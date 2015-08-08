@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.System.Threading;
-using System.IO;
 using Windows.Storage.Streams;
 
 
@@ -66,7 +65,6 @@ namespace KarakibLab
                     result = graph(pixelWidth, pixelHeight);
                 }
                 ));
-            int k;
             // Open a stream to copy the graph to the WriteableBitmap's pixel buffer
             using (Stream stream = Scenario4WriteableBitmap.PixelBuffer.AsStream())
             {
