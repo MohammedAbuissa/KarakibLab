@@ -26,13 +26,10 @@ namespace KarakibLab
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private WriteableBitmap Scenario4WriteableBitmap;
         public MainPage()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
-            Scenario4WriteableBitmap = new WriteableBitmap((int)image.Width, (int)image.Height);
-            image.Source = Scenario4WriteableBitmap;
         }
 
         /// <summary>
@@ -51,41 +48,12 @@ namespace KarakibLab
             // this event is handled for you.
         }
 
-        async private void Button_Click(object sender, RoutedEventArgs e)
+    
+
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-            int pixelWidth = Scenario4WriteableBitmap.PixelWidth;
-            int pixelHeight = Scenario4WriteableBitmap.PixelHeight;
-
-            // Asynchronously graph the Mandelbrot set on a background thread
-            byte[] result = null;
-            await ThreadPool.RunAsync(new WorkItemHandler(
-                (IAsyncAction action) =>
-                {
-                    result = graph(pixelWidth, pixelHeight);
-                }
-                ));
-            // Open a stream to copy the graph to the WriteableBitmap's pixel buffer
-            using (Stream stream = Scenario4WriteableBitmap.PixelBuffer.AsStream())
-            {
-                await stream.WriteAsync(result, 0, result.Length);
-            }
-
-            // Redraw the WriteableBitmap
-            Scenario4WriteableBitmap.Invalidate();
-        }
-        private byte[] graph(int width, int height)
-        {
-            byte[] result = new byte[width * height * 4];
-            int resultIndex = 0;
-            for (int i = 50*width; i < 50*(100+width); i++)
-            {
-                 result[resultIndex++] = 10; // Green value of pixel
-                 result[resultIndex++] = 100; // Blue value of pixel
-                 result[resultIndex++] = 110; // Red value of pixel
-                 result[resultIndex++] = 255; 
-            }
-            return result;
+            this.Frame.Navigate(typeof(Drawing));
         }
 
     }
