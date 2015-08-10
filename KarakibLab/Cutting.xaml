@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="KarakibLab.Cutting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KarakibLab"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="57*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="G" Grid.Row="1" Background="White" PointerMoved="G_PointerMoved" PointerPressed="G_PointerPressed" PointerReleased="G_PointerReleased"/>
+        <ToggleButton x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Margin="38,12,0,0" VerticalAlignment="Top"/>
+        <ToggleButton x:Name="Cut" Content="Cut" HorizontalAlignment="Left" Margin="177,12,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Page>

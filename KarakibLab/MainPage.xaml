@@ -10,5 +10,6 @@
 
     <Grid>
         <Button Content="Drawing" HorizontalAlignment="Left" Margin="150,35,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <Button Content="Cutting" HorizontalAlignment="Left" Margin="174,152,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Page>

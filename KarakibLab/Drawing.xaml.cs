@@ -36,7 +36,7 @@ namespace KarakibLab
             geo.Figures.Add(figure);// constructor(new shape)
             path p = new path();//constructor
             p.Data = geo;
-            p.Stroke = black;
+            p.Stroke = new SolidColorBrush(new Color {A = 100});
             CompositeTransform c = new CompositeTransform();
             p.RenderTransform = c;
             c.TranslateX = 0;

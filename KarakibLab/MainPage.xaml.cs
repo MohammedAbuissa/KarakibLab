@@ -56,5 +56,10 @@ namespace KarakibLab
             this.Frame.Navigate(typeof(Drawing));
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Cutting));
+        }
+
     }
 }
