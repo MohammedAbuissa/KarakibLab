@@ -19,32 +19,36 @@ using Windows.UI;
 
 namespace KarakibLab
 {
+    using path = Windows.UI.Xaml.Shapes.Path;
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class Drawing : Page
     {
         private SolidColorBrush black = new SolidColorBrush(Colors.Black);
+
         public Drawing()
         {
             this.InitializeComponent();
-            Polyline p = new Polyline();
-            Point[] ps = new Point[4];
-            ps[0] = new Point { X = 0, Y = 0 };
-            ps[1] = new Point { X = 100, Y = 0 };
-            ps[2] = new Point { X = 100, Y = 100};
-            ps[3] = new Point { X = 0, Y = 100 };
-            for (int i = 0; i < 4; i++)
-            {
-                p.Points.Add(ps[i]);
-            }
+            //path
+            PathFigure figure = new PathFigure(); // global
+            PathGeometry geo = new PathGeometry(); // global
+            geo.Figures.Add(figure);
+            path p = new path();
+            p.Data = geo;
             p.Stroke = black;
-            p.RenderTransformOrigin = new Point(0, 0);
-            TranslateTransform t = new TranslateTransform();
-            p.RenderTransform = t;
-            t.X = 100;
-            t.Y = 100;
+            figure.Segments.Add(new LineSegment { Point = new Point(25, 25) });
+            CompositeTransform c = new CompositeTransform();
+            p.RenderTransform = c;
+            c.TranslateX = 100;
+            c.TranslateY = 100;
+            figure.StartPoint = new Point(0, 0); //poitner pressed
+            figure.Segments.Add(new LineSegment { Point = new Point(50, 50) }); // pointer moved 
+            figure.Segments.Add(new LineSegment { Point = new Point(50, 0) });
+            //figure.Segments.Add(new LineSegment { Point = new Point(0, 0) });
+           
             G.Children.Add(p);
+
         }
         private Line current;
         private Point pc = new Point();
