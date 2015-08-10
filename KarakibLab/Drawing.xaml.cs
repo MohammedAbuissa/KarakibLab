@@ -26,27 +26,21 @@ namespace KarakibLab
     public sealed partial class Drawing : Page
     {
         private SolidColorBrush black = new SolidColorBrush(Colors.Black);
-
+        PathFigure figure = new PathFigure(); // global
         public Drawing()
         {
             this.InitializeComponent();
             //path
-            PathFigure figure = new PathFigure(); // global
-            PathGeometry geo = new PathGeometry(); // global
-            geo.Figures.Add(figure);
-            path p = new path();
+          
+            PathGeometry geo = new PathGeometry(); 
+            geo.Figures.Add(figure);// constructor(new shape)
+            path p = new path();//constructor
             p.Data = geo;
             p.Stroke = black;
-            figure.Segments.Add(new LineSegment { Point = new Point(25, 25) });
             CompositeTransform c = new CompositeTransform();
             p.RenderTransform = c;
-            c.TranslateX = 100;
-            c.TranslateY = 100;
-            figure.StartPoint = new Point(0, 0); //poitner pressed
-            figure.Segments.Add(new LineSegment { Point = new Point(50, 50) }); // pointer moved 
-            figure.Segments.Add(new LineSegment { Point = new Point(50, 0) });
-            //figure.Segments.Add(new LineSegment { Point = new Point(0, 0) });
-           
+            c.TranslateX = 0;
+            c.TranslateY = 0;
             G.Children.Add(p);
 
         }
@@ -69,6 +63,7 @@ namespace KarakibLab
             {
                 k.X = e.GetCurrentPoint((UIElement)sender).Position.X;
                 k.Y = e.GetCurrentPoint((UIElement)sender).Position.Y;
+                figure.StartPoint = new Point(k.X, k.Y); //poitner pressed
                 isfirst = false;
             }
             else
@@ -81,8 +76,7 @@ namespace KarakibLab
                 Y1 = k.Y,
                 X2 = e.GetCurrentPoint((UIElement)sender).Position.X,
                 Y2 = e.GetCurrentPoint((UIElement)sender).Position.Y,
-                Stroke = new SolidColorBrush(Colors.Black),
-                StrokeThickness = 5
+                Stroke = new SolidColorBrush(Colors.Black)
             };
             ((Grid)sender).Children.Add(l);
             current = l;
@@ -92,6 +86,8 @@ namespace KarakibLab
         {
             pc.X = e.GetCurrentPoint((UIElement)sender).Position.X;
             pc.Y = e.GetCurrentPoint((UIElement)sender).Position.Y;
+            figure.Segments.Add(new LineSegment { Point = new Point(pc.X, pc.Y) });
+            G.Children.Remove(current);
         }
 
         private void Grid_PointerMoved(object sender, PointerRoutedEventArgs e)
