@@ -24,14 +24,31 @@ namespace KarakibLab
     /// </summary>
     public sealed partial class Drawing : Page
     {
+        private SolidColorBrush black = new SolidColorBrush(Colors.Black);
         public Drawing()
         {
             this.InitializeComponent();
-            Line k = new Line { X1 = 50, Y1 = 50, X2 = 100, Y2 = 100, Stroke = new SolidColorBrush(Colors.Black), StrokeThickness = 5 };
-            G.Children.Add(k);
-            current = k;
+            Polyline p = new Polyline();
+            Point[] ps = new Point[4];
+            ps[0] = new Point { X = 0, Y = 0 };
+            ps[1] = new Point { X = 100, Y = 0 };
+            ps[2] = new Point { X = 100, Y = 100};
+            ps[3] = new Point { X = 0, Y = 100 };
+            for (int i = 0; i < 4; i++)
+            {
+                p.Points.Add(ps[i]);
+            }
+            p.Stroke = black;
+            p.RenderTransformOrigin = new Point(0, 0);
+            TranslateTransform t = new TranslateTransform();
+            p.RenderTransform = t;
+            t.X = 100;
+            t.Y = 100;
+            G.Children.Add(p);
         }
         private Line current;
+        private Point pc = new Point();
+        private bool isfirst = true;
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -43,10 +60,21 @@ namespace KarakibLab
 
         private void Grid_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            current.Stroke = new SolidColorBrush(Colors.Red);
+            Point k = new Point();
+            if(isfirst)
+            {
+                k.X = e.GetCurrentPoint((UIElement)sender).Position.X;
+                k.Y = e.GetCurrentPoint((UIElement)sender).Position.Y;
+                isfirst = false;
+            }
+            else
+            {
+                k.X = pc.X;
+                k.Y = pc.Y;
+            }
             Line l = new Line {
-                X1 = e.GetCurrentPoint((UIElement)sender).Position.X, 
-                Y1 = e.GetCurrentPoint((UIElement)sender).Position.Y,
+                X1 = k.X, 
+                Y1 = k.Y,
                 X2 = e.GetCurrentPoint((UIElement)sender).Position.X,
                 Y2 = e.GetCurrentPoint((UIElement)sender).Position.Y,
                 Stroke = new SolidColorBrush(Colors.Black),
@@ -58,7 +86,8 @@ namespace KarakibLab
 
         private void Grid_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-
+            pc.X = e.GetCurrentPoint((UIElement)sender).Position.X;
+            pc.Y = e.GetCurrentPoint((UIElement)sender).Position.Y;
         }
 
         private void Grid_PointerMoved(object sender, PointerRoutedEventArgs e)
