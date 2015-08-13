@@ -27,6 +27,7 @@ namespace KarakibLab
     {
         private SolidColorBrush black = new SolidColorBrush(Colors.Black);
         PathFigure figure = new PathFigure(); // global
+        PathFigure f = new PathFigure();
         public Drawing()
         {
             this.InitializeComponent();
@@ -34,6 +35,9 @@ namespace KarakibLab
           
             PathGeometry geo = new PathGeometry(); 
             geo.Figures.Add(figure);// constructor(new shape)
+            geo.Figures.Add(f);
+            figure.StartPoint = new Point(25, 25);
+            f.StartPoint = new Point(75, 75);
             path p = new path();//constructor
             p.Data = geo;
             p.Stroke = new SolidColorBrush(new Color {A = 100});
@@ -42,6 +46,11 @@ namespace KarakibLab
             c.TranslateX = 0;
             c.TranslateY = 0;
             G.Children.Add(p);
+            f.Segments.Add(new LineSegment { Point = new Point(100, 100) });
+            f.Segments.Add(new LineSegment { Point = new Point(100, 150) });
+            figure.Segments.Add(new LineSegment { Point = new Point(50, 50) });
+            figure.Segments.Add(new LineSegment { Point = new Point(50, 100) });
+            p.Fill = black;
 
         }
         private Line current;
