@@ -61,5 +61,10 @@ namespace KarakibLab
             this.Frame.Navigate(typeof(Cutting));
         }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TranslateRotate));
+        }
+
     }
 }
