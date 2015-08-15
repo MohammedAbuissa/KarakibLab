@@ -13,24 +13,42 @@ namespace KarakibLab
     abstract class Sticker : Path
     {
         protected List<LineSegment> Segments = new List<LineSegment>();
-
-        virtual public Sticker(Point location, double InternalAngle,double radius,int Sides, double InitialAngle = 0)
+        public Point Sorigin { get; set; }
+        protected Point Location;
+        protected double InternalAngle, Radius, InitialAngle = 0;
+        protected int Sides;
+        public Sticker()
         {
             PathFigure figure = new PathFigure();
             PathGeometry geo = new PathGeometry();
             geo.Figures.Add(figure);
             this.Data = geo;
         }
-        public void Translate(Point Delta)
+        private void Construct()
         {
-            foreach (LineSegment item in Segments)
-            {
-                item.Point = new Point(item.Point.X + Delta.X, item.Point.Y + Delta.Y);
-            }
-        }
-        public void Rotate()
-        {
-        }
+            if (Segments.Count == 0)
+                for (int i = 0; i < Sides; i++)
+                    Segments.Add(new LineSegment { Point = new Point(Location.X - Sorigin.X + Radius * Math.Cos(i * InternalAngle + InitialAngle), Location.Y - Sorigin.Y - Radius * Math.Sin(i * InternalAngle + InitialAngle)) });
+            else
+                for (int i = 0; i < Sides; i++)
+                    Segments[i].Point = new Point(Location.X - Sorigin.X + Radius * Math.Cos(i * InternalAngle + InitialAngle), Location.Y - Sorigin.Y - Radius * Math.Sin(i * InternalAngle + InitialAngle));
 
+        }
+        public void Translate(Point DeltaLocation)
+        {
+            this.Location.X += DeltaLocation.X;
+            this.Location.Y += DeltaLocation.Y;
+            this.Construct();
+        }
+        public void Rotate(Double DeltaAngle)
+        {
+            this.InitialAngle += DeltaAngle;
+            this.Construct(); 
+        }
+        public void Scale (Double DeltaRadius)
+        {
+            this.Radius += DeltaRadius;
+            this.Construct();
+        }
     }
 }
