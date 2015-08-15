@@ -17,35 +17,45 @@ namespace KarakibLab
         protected Point Location;
         protected double InternalAngle, Radius, InitialAngle = 0;
         protected int Sides;
-        public Sticker()
+        public Sticker(Point Location, Double Radius)
         {
             PathFigure figure = new PathFigure();
             PathGeometry geo = new PathGeometry();
             geo.Figures.Add(figure);
             this.Data = geo;
+            this.Location = Location;
+            this.Radius = Radius;
         }
-        private void Construct()
+
+
+        protected void Construct()
         {
+            ((this.Data as PathGeometry).Figures[0] as PathFigure).StartPoint = new Point(Location.X - Sorigin.X + Radius * Math.Cos(InitialAngle), Location.Y - Sorigin.Y - Radius * Math.Sin(InitialAngle));
             if (Segments.Count == 0)
-                for (int i = 0; i < Sides; i++)
-                    Segments.Add(new LineSegment { Point = new Point(Location.X - Sorigin.X + Radius * Math.Cos(i * InternalAngle + InitialAngle), Location.Y - Sorigin.Y - Radius * Math.Sin(i * InternalAngle + InitialAngle)) });
+                for (int i = 1; i < Sides; i++)
+                    {
+                        Segments.Add(new LineSegment { Point = new Point(Location.X - Sorigin.X + Radius * Math.Cos((i%Sides) * InternalAngle + InitialAngle), Location.Y - Sorigin.Y - Radius * Math.Sin((i%Sides) * InternalAngle + InitialAngle)) });
+                        ((this.Data as PathGeometry).Figures[0] as PathFigure).Segments.Add(Segments[i-1]);
+                    }
+                
+
             else
-                for (int i = 0; i < Sides; i++)
-                    Segments[i].Point = new Point(Location.X - Sorigin.X + Radius * Math.Cos(i * InternalAngle + InitialAngle), Location.Y - Sorigin.Y - Radius * Math.Sin(i * InternalAngle + InitialAngle));
+                for (int i = 1; i < Sides; i++)
+                    Segments[i-1].Point = new Point(Location.X - Sorigin.X + Radius * Math.Cos((i%Sides) * InternalAngle + InitialAngle), Location.Y - Sorigin.Y - Radius * Math.Sin((i%Sides) * InternalAngle + InitialAngle));
 
         }
-        public void Translate(Point DeltaLocation)
+        public virtual void Translate(Point DeltaLocation)
         {
             this.Location.X += DeltaLocation.X;
             this.Location.Y += DeltaLocation.Y;
             this.Construct();
         }
-        public void Rotate(Double DeltaAngle)
+        public virtual void Rotate(Double DeltaAngle)
         {
             this.InitialAngle += DeltaAngle;
             this.Construct(); 
         }
-        public void Scale (Double DeltaRadius)
+        public virtual void Scale (Double DeltaRadius)
         {
             this.Radius += DeltaRadius;
             this.Construct();
