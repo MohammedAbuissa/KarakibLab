@@ -18,7 +18,7 @@ namespace KarakibLab
 
         private void Square_ManipulationDelta(object sender, Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs e)
         {
-            this.Fill = new SolidColorBrush(Colors.Black);
+            this.Fill = new SolidColorBrush(Colors.Beige);
             this.Translate(e.Delta.Translation);
         }
     }

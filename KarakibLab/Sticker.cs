@@ -28,7 +28,7 @@ namespace KarakibLab
         }
 
 
-        protected void Construct()
+        protected virtual void Construct()
         {
             ((this.Data as PathGeometry).Figures[0] as PathFigure).StartPoint = new Point(Location.X - Sorigin.X + Radius * Math.Cos(InitialAngle), Location.Y - Sorigin.Y - Radius * Math.Sin(InitialAngle));
             if (Segments.Count == 0)
@@ -44,7 +44,7 @@ namespace KarakibLab
                     Segments[i-1].Point = new Point(Location.X - Sorigin.X + Radius * Math.Cos((i%Sides) * InternalAngle + InitialAngle), Location.Y - Sorigin.Y - Radius * Math.Sin((i%Sides) * InternalAngle + InitialAngle));
 
         }
-        public virtual void Translate(Point DeltaLocation)
+        public void Translate(Point DeltaLocation)
         {
             this.Location.X += DeltaLocation.X;
             this.Location.Y += DeltaLocation.Y;
@@ -55,7 +55,7 @@ namespace KarakibLab
             this.InitialAngle += DeltaAngle;
             this.Construct(); 
         }
-        public virtual void Scale (Double DeltaRadius)
+        public void Scale (Double DeltaRadius)
         {
             this.Radius += DeltaRadius;
             this.Construct();

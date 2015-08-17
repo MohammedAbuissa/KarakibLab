@@ -85,6 +85,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Circle.cs" />
     <Compile Include="Cutting.xaml.cs">
       <DependentUpon>Cutting.xaml</DependentUpon>
     </Compile>
@@ -100,6 +101,7 @@
     <Compile Include="TranslateRotate.xaml.cs">
       <DependentUpon>TranslateRotate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Triangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

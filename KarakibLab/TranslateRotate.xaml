@@ -8,10 +8,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="g" Background="#FF00DDF3">
+    <Grid x:Name="g" Background="#FF00DDF3" PointerPressed="g_PointerPressed" PointerMoved="g_PointerMoved">
         <Button Content="left" HorizontalAlignment="Left" Margin="67,31,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
         <Button Content="right" HorizontalAlignment="Left" Margin="225,31,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <Button Content="up" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
         <Button Content="Down" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
+        <Button x:Name="button" Content="Square" HorizontalAlignment="Left" Margin="0,341,0,0" VerticalAlignment="Top" Click="button_Click_4"/>
+        <Button x:Name="button_Copy" Content="Triangle" HorizontalAlignment="Left" Margin="0,419,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_Copy1" Content="Circle" HorizontalAlignment="Left" Margin="0,518,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
