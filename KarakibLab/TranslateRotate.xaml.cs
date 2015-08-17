@@ -29,7 +29,7 @@ namespace KarakibLab
         public TranslateRotate()
         {
             this.InitializeComponent();
-            
+                        
         }
         Point currentpointer;
         /// <summary>

@@ -85,6 +85,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BuiltinClipping.xaml.cs">
+      <DependentUpon>BuiltinClipping.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Circle.cs" />
     <Compile Include="Cutting.xaml.cs">
       <DependentUpon>Cutting.xaml</DependentUpon>
@@ -94,6 +97,9 @@
     </Compile>
     <Compile Include="Karwata.xaml.cs">
       <DependentUpon>Karwata.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KarwataA7san.xaml.cs">
+      <DependentUpon>KarwataA7san.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -128,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="BuiltinClipping.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Cutting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Karwata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KarwataA7san.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
