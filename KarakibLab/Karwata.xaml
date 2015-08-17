@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="KarakibLab.Karwata"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KarakibLab"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="White">
+        <Image x:Name="image" Source="Assets/transparent_cats.png" Canvas.ZIndex="100"/>
+        <Ellipse Fill="#FF1CC7CF" HorizontalAlignment="Left" Height="100" Margin="88,341,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
+
+        <Rectangle Fill="#FF2626E2" HorizontalAlignment="Left" Height="126" Margin="160,295,0,0" VerticalAlignment="Top" Width="130"/>
+        <Ellipse Fill="#FFE226B7" HorizontalAlignment="Left" Height="100" Margin="53,130,0,0"  VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.318,-0.823"/>
+        <Rectangle Fill="#FF48E226" HorizontalAlignment="Left" Height="100" Margin="153.479,397.371,0,0"  VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="-52.221"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FFE226B7" HorizontalAlignment="Left" Height="100" Margin="53,415,0,0"  VerticalAlignment="Top" Width="100"/>
+
+        <Ellipse Fill="#FFE226B7" HorizontalAlignment="Left" Height="100" Margin="290,415,0,0"  VerticalAlignment="Top" Width="100"/>
+        <Rectangle Fill="#FF891B66" HorizontalAlignment="Left" Height="51.619" Margin="10.485,458.633,0,0"  VerticalAlignment="Top" Width="46.09" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="-28.654"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Ellipse Fill="#FF891B66" HorizontalAlignment="Left" Height="46" Margin="123,469,0,0"  VerticalAlignment="Top" Width="65"/>
+        <Ellipse Fill="#FF891B66" HorizontalAlignment="Left" Height="26" Margin="153,489,0,0"  VerticalAlignment="Top" Width="202"/>
+        <Ellipse Fill="#FF891B66" HorizontalAlignment="Left" Height="100" Margin="0,383,0,0" VerticalAlignment="Top" Width="100"/>
+        <Rectangle Fill="#FFFFEA1D" HorizontalAlignment="Left" Height="100" Margin="255,383,0,0" VerticalAlignment="Top" Width="100"/>
+        <Ellipse Fill="#FFB7E29A" HorizontalAlignment="Left" Height="174" Margin="255,247,0,0" VerticalAlignment="Top" Width="135"/>
+        <Rectangle Fill="#FFB7E29A" HorizontalAlignment="Left" Height="100" Margin="33,310,0,0" VerticalAlignment="Top" Width="98"/>
+        <Ellipse Fill="#FFBD960F" HorizontalAlignment="Left" Height="100" Margin="88,278,0,0" VerticalAlignment="Top" Width="100"/>
+        <Rectangle Fill="#FFBD960F" HorizontalAlignment="Left" Height="100" Margin="155,147,0,0" VerticalAlignment="Top" Width="100"/>
+        <Ellipse Fill="#FF3BA031" HorizontalAlignment="Left" Height="100" Margin="227,170,0,0" VerticalAlignment="Top" Width="100"/>
+        <Ellipse Fill="#FF3BA031" HorizontalAlignment="Left" Height="100" Margin="88,205,0,0" VerticalAlignment="Top" Width="100"/>
+        <Rectangle Fill="#FF40E2EA" HorizontalAlignment="Left" Height="100" Margin="140,130,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform ScaleX="-1"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Ellipse Fill="#FF40E2EA" HorizontalAlignment="Left" Height="52" Margin="255,253,0,0" VerticalAlignment="Top" Width="28"/>
+        <Ellipse Fill="#FF40E2EA" HorizontalAlignment="Left" Height="52" Margin="260,130,0,0" VerticalAlignment="Top" Width="67"/>
+
+    </Grid>
+</Page>

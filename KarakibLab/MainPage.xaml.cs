@@ -66,5 +66,9 @@ namespace KarakibLab
             this.Frame.Navigate(typeof(TranslateRotate));
         }
 
+        private void button_Click_3(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Karwata));
+        }
     }
 }
