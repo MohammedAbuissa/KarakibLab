@@ -19,9 +19,9 @@
                 <CompositeTransform Rotation="-52.221"/>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Rectangle Fill="#FFE226B7" HorizontalAlignment="Left" Height="100" Margin="53,415,0,0"  VerticalAlignment="Top" Width="100"/>
+        <Rectangle Fill="#FFE226B7" HorizontalAlignment="Left" Height="100" Margin="45,415,0,0"  VerticalAlignment="Top" Width="115"/>
 
-        <Ellipse Fill="#FFE226B7" HorizontalAlignment="Left" Height="100" Margin="290,415,0,0"  VerticalAlignment="Top" Width="100"/>
+        <Ellipse Fill="#FFE226B7" HorizontalAlignment="Left" Height="100" Margin="290,415,0,0"  VerticalAlignment="Top" Width="110"/>
         <Rectangle Fill="#FF891B66" HorizontalAlignment="Left" Height="51.619" Margin="10.485,458.633,0,0"  VerticalAlignment="Top" Width="46.09" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
             <Rectangle.RenderTransform>
                 <CompositeTransform Rotation="-28.654"/>
@@ -30,10 +30,10 @@
         <Ellipse Fill="#FF891B66" HorizontalAlignment="Left" Height="46" Margin="123,469,0,0"  VerticalAlignment="Top" Width="65"/>
         <Ellipse Fill="#FF891B66" HorizontalAlignment="Left" Height="26" Margin="153,489,0,0"  VerticalAlignment="Top" Width="202"/>
         <Ellipse Fill="#FF891B66" HorizontalAlignment="Left" Height="100" Margin="0,383,0,0" VerticalAlignment="Top" Width="100"/>
-        <Rectangle Fill="#FFFFEA1D" HorizontalAlignment="Left" Height="100" Margin="255,383,0,0" VerticalAlignment="Top" Width="100"/>
+        <Rectangle Fill="#FFFFEA1D" HorizontalAlignment="Left" Height="100" Margin="247,383,0,0" VerticalAlignment="Top" Width="119"/>
         <Ellipse Fill="#FFB7E29A" HorizontalAlignment="Left" Height="174" Margin="255,247,0,0" VerticalAlignment="Top" Width="135"/>
         <Rectangle Fill="#FFB7E29A" HorizontalAlignment="Left" Height="100" Margin="33,310,0,0" VerticalAlignment="Top" Width="98"/>
-        <Ellipse Fill="#FFBD960F" HorizontalAlignment="Left" Height="100" Margin="88,278,0,0" VerticalAlignment="Top" Width="100"/>
+        <Ellipse Fill="#FFBD960F" HorizontalAlignment="Left" Height="100" Margin="60,278,0,0" VerticalAlignment="Top" Width="128"/>
         <Rectangle Fill="#FFBD960F" HorizontalAlignment="Left" Height="100" Margin="155,147,0,0" VerticalAlignment="Top" Width="100"/>
         <Ellipse Fill="#FF3BA031" HorizontalAlignment="Left" Height="100" Margin="227,170,0,0" VerticalAlignment="Top" Width="100"/>
         <Ellipse Fill="#FF3BA031" HorizontalAlignment="Left" Height="100" Margin="88,205,0,0" VerticalAlignment="Top" Width="100"/>

@@ -70,5 +70,10 @@ namespace KarakibLab
         {
             this.Frame.Navigate(typeof(Karwata));
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SherineTest));
+        }
     }
 }
