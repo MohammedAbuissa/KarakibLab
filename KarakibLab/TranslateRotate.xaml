@@ -14,7 +14,7 @@
         <Button Content="up" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
         <Button Content="Down" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
         <Button x:Name="button" Content="Square" HorizontalAlignment="Left" Margin="0,341,0,0" VerticalAlignment="Top" Click="button_Click_4"/>
-        <Button x:Name="button_Copy" Content="Triangle" HorizontalAlignment="Left" Margin="0,419,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button_Copy1" Content="Circle" HorizontalAlignment="Left" Margin="0,518,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_Copy" Content="Triangle" HorizontalAlignment="Left" Margin="0,419,0,0" VerticalAlignment="Top" Click="button_Copy_Click"/>
+        <Button x:Name="button_Copy1" Content="Circle" HorizontalAlignment="Left" Margin="0,518,0,0" VerticalAlignment="Top" Click="button_Copy1_Click"/>
     </Grid>
 </Page>

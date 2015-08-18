@@ -17,6 +17,7 @@ namespace KarakibLab
         protected Point Location;
         protected double InternalAngle, Radius, InitialAngle = 0;
         protected int Sides;
+        public bool isActive { get; set; }
         public Sticker(Point Location, Double Radius)
         {
             PathFigure figure = new PathFigure();
@@ -25,8 +26,30 @@ namespace KarakibLab
             this.Data = geo;
             this.Location = Location;
             this.Radius = Radius;
+            this.Tapped += Sticker_Tapped;
+            this.Holding += Sticker_Holding;
         }
 
+        private void Sticker_Holding(object sender, Windows.UI.Xaml.Input.HoldingRoutedEventArgs e)
+        {
+            if(!isActive)
+            {
+                Global.Active.AddLast(sender as Sticker);
+                this.Opacity = 0.5;
+                this.isActive = true;
+            }
+        }
+
+        private void Sticker_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            if (isActive)
+            {
+                Global.Active.Remove(sender as Sticker);
+                this.Opacity = 1;
+                this.isActive = false;
+            }
+                
+        }
 
         protected virtual void Construct()
         {

@@ -25,7 +25,7 @@ namespace KarakibLab
     /// </summary>
     public sealed partial class TranslateRotate : Page
     {
-        List<Sticker> active = new List<Sticker>();
+
         public TranslateRotate()
         {
             this.InitializeComponent();
@@ -45,32 +45,32 @@ namespace KarakibLab
         //right
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach(Sticker s in active)
+            foreach(Sticker s in Global.Active)
                 s.Rotate(-Math.PI / 18);
         }
         //left
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            foreach (Sticker s in active)
+            foreach (Sticker s in Global.Active)
                 s.Rotate(Math.PI / 18);
         }
         //scale
         //up
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {//to be completed with angles geometry 
-            foreach (Sticker s in active)
+            foreach (Sticker s in Global.Active)
                 s.Scale(5);
         }
         //down
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            foreach (Sticker s in active)
+            foreach (Sticker s in Global.Active)
                 s.Scale(-5);
         }
         //move
         private void g_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            foreach (Sticker s in active)
+            foreach (Sticker s in Global.Active)
                 s.Translate(new Point((e.GetCurrentPoint(sender as UIElement).Position.X - currentpointer.X), e.GetCurrentPoint((sender as UIElement)).Position.Y - currentpointer.Y));
             currentpointer = e.GetCurrentPoint(sender as UIElement).Position;
         }
@@ -82,7 +82,29 @@ namespace KarakibLab
 
         private void button_Click_4(object sender, RoutedEventArgs e)
         {
+            Square x = new Square(new Point(g.ActualHeight / 2, g.ActualWidth / 2), 50);
+            Global.Active.AddLast(x);
+            x.Opacity = 0.5;
+            x.isActive = true;
+            g.Children.Add(x);
+        }
 
+        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            Triangle x = new Triangle(new Point(g.ActualHeight / 2, g.ActualWidth / 2), 50);
+            Global.Active.AddLast(x);
+            x.Opacity = 0.5;
+            x.isActive = true;
+            g.Children.Add(x);
+        }
+
+        private void button_Copy1_Click(object sender, RoutedEventArgs e)
+        {
+            Circle x = new Circle(new Point(g.ActualHeight / 2, g.ActualWidth / 2), 50);
+            Global.Active.AddLast(x);
+            x.Opacity = 0.5;
+            x.isActive = true;
+            g.Children.Add(x);
         }
     }
 }

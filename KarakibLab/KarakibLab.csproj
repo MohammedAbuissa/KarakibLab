@@ -95,6 +95,7 @@
     <Compile Include="Drawing.xaml.cs">
       <DependentUpon>Drawing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Global.cs" />
     <Compile Include="Karwata.xaml.cs">
       <DependentUpon>Karwata.xaml</DependentUpon>
     </Compile>
