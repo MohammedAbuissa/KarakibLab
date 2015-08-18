@@ -10,6 +10,5 @@
 
     <Grid Background="White">
         <Image x:Name="image" Source="Assets/transparent_cats.png" Canvas.ZIndex="100"/>
-
     </Grid>
 </Page>
