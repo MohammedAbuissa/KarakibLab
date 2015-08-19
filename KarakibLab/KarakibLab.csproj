@@ -85,6 +85,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BitMap.xaml.cs">
+      <DependentUpon>BitMap.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BuiltinClipping.xaml.cs">
       <DependentUpon>BuiltinClipping.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\11822732_1071566896200670_63516507983741043_n.jpg" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
     <Content Include="Assets\SplashScreen.scale-240.png" />
@@ -135,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="BitMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BuiltinClipping.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

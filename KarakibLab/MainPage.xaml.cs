@@ -75,5 +75,10 @@ namespace KarakibLab
         {
             this.Frame.Navigate(typeof(SherineTest));
         }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(BitMap));
+        }
     }
 }

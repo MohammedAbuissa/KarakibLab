@@ -14,5 +14,6 @@
         <Button Content="Translate, rotate" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
         <Button x:Name="button" Content="Karwata" HorizontalAlignment="Left" Margin="110,365,0,0" VerticalAlignment="Top" Click="button_Click_3"/>
         <Button x:Name="button1" Content="SherineTest" HorizontalAlignment="Left" Margin="259,249,0,0" VerticalAlignment="Top" Click="button1_Click"/>
+        <Button x:Name="button2" Content="BitMap" HorizontalAlignment="Left" Margin="31,110,0,0" VerticalAlignment="Top" Click="button2_Click"/>
     </Grid>
 </Page>
