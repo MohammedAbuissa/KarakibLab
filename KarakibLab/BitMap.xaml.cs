@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI;
 using Windows.UI.Xaml.Media.Imaging;
-
+using Windows.Storage.Streams;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace KarakibLab
@@ -42,8 +42,33 @@ namespace KarakibLab
             k.Children.Add(t);
             RenderTargetBitmap render = new RenderTargetBitmap();
             await render.RenderAsync(t);
+            var result = await render.GetPixelsAsync();
+            WriteableBitmap temp = new WriteableBitmap(render.PixelWidth,render.PixelHeight);
+            using (Stream stream = temp.PixelBuffer.AsStream())
+            {
+                await stream.WriteAsync(result.ToArray(), 0, render.PixelHeight * render.PixelWidth*4);
+            }
+            WriteableBitmap source = new WriteableBitmap(480,800);
+            using (Stream stream = source.PixelBuffer.AsStream())
+            {
+                Byte[] res = new Byte[480 * 800 * 4];
+                for (int i = 0; i < res.Length; i++)
+                {
+                    res[i] = 0xff;
+                }
+
+                Byte[] k = temp.PixelBuffer.ToArray();
+                for (long i = 0, j=0; j < k.Length;i = (j/(temp.PixelWidth*4))*source.PixelWidth*4+(i%(temp.PixelWidth*4)))
+                {
+                    for (int l = 0; l < 4; l++)
+                    {
+                        res[i++%res.Length] = k[j++%k.Length];
+                    }
+                }
+                await stream.WriteAsync(res, 0, res.Length);
+            }
             k.Children.Remove(t);
-            I.Source = render;
+            I.Source = source;
 
         }
     }
