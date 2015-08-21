@@ -29,16 +29,18 @@ namespace KarakibLab
         /// This parameter is typically used to configure the page.</param>
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Triangle t = new Triangle(new Point(200,200), 100);
-            t.Opacity = 0.75;
-            k.Children.Add(t);
+            Square t = new Square(new Point(200,200), 100);
+            t.Opacity = 1;
+            Grid y = new Grid();
+            y.Children.Add(t);
+            k.Children.Add(y);
             RenderTargetBitmap render = new RenderTargetBitmap();
-            await render.RenderAsync(t);
+            await render.RenderAsync(y);
             var result = await render.GetPixelsAsync();
-            WriteableBitmap temp = new WriteableBitmap(render.PixelWidth,render.PixelHeight);
+            WriteableBitmap temp = new WriteableBitmap((int)(100*Math.Sqrt(2)),(int)(100*Math.Sqrt(2)));
             using (Stream stream = temp.PixelBuffer.AsStream())
             {
-                await stream.WriteAsync(result.ToArray(), 0, render.PixelHeight * render.PixelWidth*4);
+                await stream.WriteAsync(result.ToArray(), 0, temp.PixelWidth*temp.PixelHeight*4);
             }
             WriteableBitmap source = new WriteableBitmap(480,800);
             using (Stream stream = source.PixelBuffer.AsStream())
@@ -50,20 +52,27 @@ namespace KarakibLab
                 }
 
                 Byte[] k = temp.PixelBuffer.ToArray();
-                for (int i = 0,j=0; i < source.PixelWidth * 200*4;i = (j/(200*4))*source.PixelWidth*4+i%(200*4) )
+                //for (int i = 0,j=0; i < source.PixelWidth * 200*4;i = (j/(200*4))*source.PixelWidth*4+i%(200*4) )
+                //{
+                //    for (int l = 0; l < 3; l++)
+                //    {
+                //        res[i++] = (byte)((3-l)*30);
+                //        j++;
+                //    }
+                //    res[i++] = (byte)0xff;
+                //    j++;
+                //}
+                for (int i = 0,j=0; i < source.PixelWidth*temp.PixelHeight*4; i =(j/(temp.PixelWidth*4))*source.PixelWidth*4+i%(temp.PixelWidth*4))
                 {
-                    for (int l = 0; l < 3; l++)
+                    for (int l = 0; l < 4; l++)
                     {
-                        res[i++] = (byte)((3-l)*30);
-                        j++;
+                        res[i++] = k[j++];
                     }
-                    res[i++] = (byte)0xff;
-                    j++;
                 }
                 await stream.WriteAsync(res, 0, res.Length);
             }
-            k.Children.Remove(t);
-            I.Source = source;
+            k.Children.Remove(y);
+            I.Source = temp;
 
         }
     }
