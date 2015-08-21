@@ -47,8 +47,8 @@ namespace KarakibLab
                 {
                     res[i] = 0xff;
                 }
-
-                Byte[] k = result.ToArray();
+                //عيب يا ابو عيسي :P
+                Byte[] kareem = result.ToArray();
                 //for (int i = 0,j=0; i < source.PixelWidth * 200*4;i = (j/(200*4))*source.PixelWidth*4+i%(200*4) )
                 //{
                 //    for (int l = 0; l < 3; l++)
@@ -61,10 +61,10 @@ namespace KarakibLab
                 //}
                 for (int i = 0,j=0; i+4 < source.PixelWidth*render.PixelHeight*4; i =(j/(render.PixelWidth*4))*source.PixelWidth*4+i%(render.PixelWidth*4))
                 {
-                    if (k[j + 1] == 0 && k[j] == 0 && k[j + 2] == 0 &&k[j+3]==255)
+                    if (kareem[j + 1] == 0 && kareem[j] == 0 && kareem[j + 2] == 0 && kareem[j + 3] == 255)
                         for (int l = 0; l < 4; l++)
                         {
-                            res[i++] = k[j++];
+                            res[i++] = kareem[j++];
                         }
                     else
                         for (int l = 0; l < 4; l++)
