@@ -17,6 +17,7 @@ namespace KarakibLab
             this.InitialAngle = Math.PI / 2;
             this.InternalAngle = 2 * Math.PI / 3;
             this.Fill = new SolidColorBrush(Colors.Black);
+            //this.StrokeThickness = 10;
             this.Construct();
         }
     }

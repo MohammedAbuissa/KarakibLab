@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
+using Windows.UI.Xaml.Shapes;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace KarakibLab
@@ -29,7 +30,8 @@ namespace KarakibLab
         /// This parameter is typically used to configure the page.</param>
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Square t = new Square(new Point(200,200), 100);
+            //Ellipse t = new Ellipse{Height = 100, Width = 100, Stroke= new SolidColorBrush(Colors.Black), Opacity = 0.75, StrokeThickness = 10 };
+            Sticker t = new Triangle(new Point(0, 0), 50);
             t.Opacity = 1;
             Grid y = new Grid();
             y.Children.Add(t);
@@ -37,11 +39,6 @@ namespace KarakibLab
             RenderTargetBitmap render = new RenderTargetBitmap();
             await render.RenderAsync(y);
             var result = await render.GetPixelsAsync();
-            WriteableBitmap temp = new WriteableBitmap((int)(100*Math.Sqrt(2)),(int)(100*Math.Sqrt(2)));
-            using (Stream stream = temp.PixelBuffer.AsStream())
-            {
-                await stream.WriteAsync(result.ToArray(), 0, temp.PixelWidth*temp.PixelHeight*4);
-            }
             WriteableBitmap source = new WriteableBitmap(480,800);
             using (Stream stream = source.PixelBuffer.AsStream())
             {
@@ -51,7 +48,7 @@ namespace KarakibLab
                     res[i] = 0xff;
                 }
 
-                Byte[] k = temp.PixelBuffer.ToArray();
+                Byte[] k = result.ToArray();
                 //for (int i = 0,j=0; i < source.PixelWidth * 200*4;i = (j/(200*4))*source.PixelWidth*4+i%(200*4) )
                 //{
                 //    for (int l = 0; l < 3; l++)
@@ -62,17 +59,24 @@ namespace KarakibLab
                 //    res[i++] = (byte)0xff;
                 //    j++;
                 //}
-                for (int i = 0,j=0; i < source.PixelWidth*temp.PixelHeight*4; i =(j/(temp.PixelWidth*4))*source.PixelWidth*4+i%(temp.PixelWidth*4))
+                for (int i = 0,j=0; i+4 < source.PixelWidth*render.PixelHeight*4; i =(j/(render.PixelWidth*4))*source.PixelWidth*4+i%(render.PixelWidth*4))
                 {
-                    for (int l = 0; l < 4; l++)
-                    {
-                        res[i++] = k[j++];
-                    }
+                    if (k[j + 1] == 0 && k[j] == 0 && k[j + 2] == 0 &&k[j+3]==255)
+                        for (int l = 0; l < 4; l++)
+                        {
+                            res[i++] = k[j++];
+                        }
+                    else
+                        for (int l = 0; l < 4; l++)
+                        {
+                            res[i++] = 0xff;
+                            j++;
+                        }
                 }
                 await stream.WriteAsync(res, 0, res.Length);
             }
             k.Children.Remove(y);
-            I.Source = temp;
+            I.Source = source;
 
         }
     }
