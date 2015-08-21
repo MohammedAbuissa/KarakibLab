@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Xaml.Shapes;
-using Windows.UI;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.Storage.Streams;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace KarakibLab
@@ -58,12 +50,15 @@ namespace KarakibLab
                 }
 
                 Byte[] k = temp.PixelBuffer.ToArray();
-                for (long i = 0, j=0; j < k.Length;i = (j/(temp.PixelWidth*4))*source.PixelWidth*4+(i%(temp.PixelWidth*4)))
+                for (int i = 0,j=0; i < source.PixelWidth * 200*4;i = (j/(200*4))*source.PixelWidth*4+i%(200*4) )
                 {
-                    for (int l = 0; l < 4; l++)
+                    for (int l = 0; l < 3; l++)
                     {
-                        res[i++%res.Length] = k[j++%k.Length];
+                        res[i++] = (byte)((3-l)*30);
+                        j++;
                     }
+                    res[i++] = (byte)0xff;
+                    j++;
                 }
                 await stream.WriteAsync(res, 0, res.Length);
             }

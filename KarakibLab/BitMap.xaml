@@ -10,7 +10,7 @@
 
     <Grid x:Name="k" Background="#FF16A5E8">
         <Image x:Name="image" Source="Assets/11822732_1071566896200670_63516507983741043_n.jpg"/>
-        <Image x:Name="I" Canvas.ZIndex="1"/>
+        <Image x:Name="I" Canvas.ZIndex="1" Stretch="None"/>
 
     </Grid>
 </Page>
