@@ -35,7 +35,7 @@ namespace KarakibLab
             t.Opacity = 1;
             Grid y = new Grid();
             y.Children.Add(t);
-            k.Children.Add(y);
+            G.Children.Add(y);
             RenderTargetBitmap render = new RenderTargetBitmap();
             await render.RenderAsync(y);
             var result = await render.GetPixelsAsync();
@@ -75,7 +75,7 @@ namespace KarakibLab
                 }
                 await stream.WriteAsync(res, 0, res.Length);
             }
-            k.Children.Remove(y);
+            G.Children.Remove(y);
             I.Source = source;
 
         }
