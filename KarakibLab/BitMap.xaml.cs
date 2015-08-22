@@ -32,7 +32,7 @@ namespace KarakibLab
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             //Ellipse t = new Ellipse { Height = 200, Width = 200, Fill = new SolidColorBrush(Colors.Black), Opacity = 1 };
-            Sticker t = new Triangle(new Point(0, 0), 100);
+            Sticker t = new Triangle(new Point(0, 0), 400);
             //path t = new path();
             //PathGeometry geo = new PathGeometry();
             //PathFigure figure = new PathFigure { StartPoint = new Point(50, 0) };
@@ -49,8 +49,8 @@ namespace KarakibLab
             RenderTargetBitmap render = new RenderTargetBitmap();
             await render.RenderAsync(y);
             var result = await render.GetPixelsAsync();
-            const int delta = 300;
-            WriteableBitmap source = new WriteableBitmap(5*render.PixelWidth,5*render.PixelHeight);
+            const int ScaleFactor = 2;
+            WriteableBitmap source = new WriteableBitmap(ScaleFactor*render.PixelWidth,ScaleFactor*render.PixelHeight);
             using (Stream stream = source.PixelBuffer.AsStream())
             {
                 Byte[] res = new Byte[source.PixelHeight * source.PixelWidth * 4];
@@ -60,18 +60,8 @@ namespace KarakibLab
                 }
                 //عيب يا ابو عيسي :P
                 Byte[] kareem = result.ToArray();
-                //for (int i = 0,j=0; i < source.PixelWidth * 200*4;i = (j/(200*4))*source.PixelWidth*4+i%(200*4) )
-                //{
-                //    for (int l = 0; l < 3; l++)
-                //    {
-                //        res[i++] = (byte)((3-l)*30);
-                //        j++;
-                //    }
-                //    res[i++] = (byte)0xff;
-                //    j++;
-                //}
-                const int Hoffset = 100;
-                const int Voffset = 200;
+                int Hoffset = (int)(0.5 * render.PixelWidth);
+                int Voffset = (int)(0.5 * render.PixelHeight);
                 for (int i = 0,j=0; i+4 < source.PixelWidth*render.PixelHeight*4+Voffset * source.PixelWidth * 4; i =((j/(render.PixelWidth*4))+Voffset)*source.PixelWidth*4+i%(render.PixelWidth*4))
                 {
                     if (kareem[j + 1] == 0 && kareem[j] == 0 && kareem[j + 2] == 0 && kareem[j + 3] == 255)
