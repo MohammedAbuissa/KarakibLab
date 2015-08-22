@@ -31,27 +31,29 @@ namespace KarakibLab
         /// This parameter is typically used to configure the page.</param>
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Ellipse t = new Ellipse { Height = 100, Width = 100,Fill = new SolidColorBrush(Colors.Black), Opacity =1 };
-            //Sticker t = new Triangle(new Point(0, 0), 50);
+            //Ellipse t = new Ellipse { Height = 200, Width = 200, Fill = new SolidColorBrush(Colors.Black), Opacity = 1 };
+            Sticker t = new Triangle(new Point(0, 0), 100);
             //path t = new path();
             //PathGeometry geo = new PathGeometry();
-            //PathFigure figure = new PathFigure { StartPoint = new Point(50,0)};
+            //PathFigure figure = new PathFigure { StartPoint = new Point(50, 0) };
             //figure.Segments.Add(new LineSegment { Point = new Point(100, 50) });
             //figure.Segments.Add(new LineSegment { Point = new Point(0, 50) });
             //figure.Segments.Add(new LineSegment { Point = new Point(50, 0) });
             //t.Fill = new SolidColorBrush(Colors.Black);
             //geo.Figures.Add(figure);
             //t.Data = geo;
+            t.Opacity = 1;
             Grid y = new Grid();
             y.Children.Add(t);
             G.Children.Add(y);
             RenderTargetBitmap render = new RenderTargetBitmap();
             await render.RenderAsync(y);
             var result = await render.GetPixelsAsync();
-            WriteableBitmap source = new WriteableBitmap(480,800);
+            const int delta = 300;
+            WriteableBitmap source = new WriteableBitmap(5*render.PixelWidth,5*render.PixelHeight);
             using (Stream stream = source.PixelBuffer.AsStream())
             {
-                Byte[] res = new Byte[480 * 800 * 4];
+                Byte[] res = new Byte[source.PixelHeight * source.PixelWidth * 4];
                 for (int i = 0; i < res.Length; i++)
                 {
                     res[i] = 0xff;

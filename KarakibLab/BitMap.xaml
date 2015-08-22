@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="G" Background="#FF16A5E8">
-        <Image x:Name="image" Source="Assets/11822732_1071566896200670_63516507983741043_n.jpg"/>
+        <Image x:Name="image"  />
         <Image x:Name="I" Canvas.ZIndex="1" Stretch="None"/>
 
     </Grid>
