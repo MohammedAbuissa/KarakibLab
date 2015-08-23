@@ -31,23 +31,11 @@ namespace KarakibLab
         /// This parameter is typically used to configure the page.</param>
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //Ellipse t = new Ellipse { Height = 200, Width = 200, Fill = new SolidColorBrush(Colors.Black), Opacity = 1 };
-            Sticker t = new Triangle(new Point(0, 0), 400);
-            //path t = new path();
-            //PathGeometry geo = new PathGeometry();
-            //PathFigure figure = new PathFigure { StartPoint = new Point(50, 0) };
-            //figure.Segments.Add(new LineSegment { Point = new Point(100, 50) });
-            //figure.Segments.Add(new LineSegment { Point = new Point(0, 50) });
-            //figure.Segments.Add(new LineSegment { Point = new Point(50, 0) });
-            //t.Fill = new SolidColorBrush(Colors.Black);
-            //geo.Figures.Add(figure);
-            //t.Data = geo;
+            Sticker t = new Circle(new Point(0, 0), 400);
             t.Opacity = 1;
-            Grid y = new Grid();
-            y.Children.Add(t);
-            G.Children.Add(y);
+            G.Children.Add(t);
             RenderTargetBitmap render = new RenderTargetBitmap();
-            await render.RenderAsync(y);
+            await render.RenderAsync(t);
             var result = await render.GetPixelsAsync();
             const int ScaleFactor = 2;
             WriteableBitmap source = new WriteableBitmap(ScaleFactor*render.PixelWidth,ScaleFactor*render.PixelHeight);
@@ -83,7 +71,7 @@ namespace KarakibLab
                 }
                 await stream.WriteAsync(res, 0, res.Length);
             }
-            G.Children.Remove(y);
+            G.Children.Remove(t);
             I.Source = source;
 
         }
