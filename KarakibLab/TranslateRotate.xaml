@@ -8,13 +8,14 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="g" Background="#FF00DDF3" PointerPressed="g_PointerPressed" PointerMoved="g_PointerMoved">
-        <Button Content="left" HorizontalAlignment="Left" Margin="67,31,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-        <Button Content="right" HorizontalAlignment="Left" Margin="225,31,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button Content="up" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
-        <Button Content="Down" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
-        <Button x:Name="button" Content="Square" HorizontalAlignment="Left" Margin="0,341,0,0" VerticalAlignment="Top" Click="button_Click_4"/>
-        <Button x:Name="button_Copy" Content="Triangle" HorizontalAlignment="Left" Margin="0,419,0,0" VerticalAlignment="Top" Click="button_Copy_Click"/>
-        <Button x:Name="button_Copy1" Content="Circle" HorizontalAlignment="Left" Margin="0,518,0,0" VerticalAlignment="Top" Click="button_Copy1_Click"/>
+    <Grid x:Name="l" Background="#FF00DDF3">
+        <Button Content="left" HorizontalAlignment="Left" Margin="232,13,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
+        <Button Content="right" HorizontalAlignment="Left" Margin="304,13,0,0" VerticalAlignment="Top" Click="Button_Click" Width="74" MinWidth="50" MinHeight="50"/>
+        <Button Content="up" HorizontalAlignment="Left" Margin="113,11,0,0" VerticalAlignment="Top" Click="Button_Click_2" Height="42" Width="94" MinWidth="50" MinHeight="50"/>
+        <Button Content="Down" HorizontalAlignment="Left" Margin="18,11,0,0" VerticalAlignment="Top" Click="Button_Click_3" MinWidth="50" MinHeight="50"/>
+        <Button x:Name="button" Content="Square" HorizontalAlignment="Left" Margin="10,582,0,0" VerticalAlignment="Top" Click="button_Click_4"/>
+        <Button x:Name="button_Copy" Content="Triangle" HorizontalAlignment="Left" Margin="164,582,0,0" VerticalAlignment="Top" Click="button_Copy_Click"/>
+        <Button x:Name="button_Copy1" Content="Circle" HorizontalAlignment="Left" Margin="291,582,0,0" VerticalAlignment="Top" Click="button_Copy1_Click"/>
+        <Grid x:Name="g" Margin="0,84,0,74" PointerMoved="g_PointerMoved" PointerPressed="g_PointerPressed" Background="White"/>
     </Grid>
 </Page>
