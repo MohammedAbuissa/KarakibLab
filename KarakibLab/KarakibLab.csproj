@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Square.cs" />
     <Compile Include="Sticker.cs" />
+    <Compile Include="Template.cs" />
     <Compile Include="TranslateRotate.xaml.cs">
       <DependentUpon>TranslateRotate.xaml</DependentUpon>
     </Compile>
