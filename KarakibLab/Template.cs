@@ -19,11 +19,11 @@ namespace KarakibLab
         }
         private PathGeometry Parse(String Data)
         {
-
+            return new PathGeometry();
         }
         private String[,] Spliter(String Data)
         {
-
+            return new String[5, 5];
         }
     }
 }
