@@ -54,6 +54,9 @@ namespace KarakibLab
                         for (int i = 1; i < item.Count;)
                             figure.Segments.Add(new ArcSegment { Size = new Size(Double.Parse(item[i++]), Double.Parse(item[i++])), RotationAngle = Double.Parse(item[i++]), IsLargeArc = (Double.Parse(item[i++]) == 1.0), SweepDirection = Double.Parse(item[i++]) == 1.0 ? SweepDirection.Clockwise : SweepDirection.Counterclockwise, Point = new Point(Double.Parse(item[i++]), Double.Parse(item[i++]))});
                         break;
+                    case "Z":
+                        figure.IsClosed = true;
+                        break;
                 }
             }
             return Result;
@@ -81,8 +84,26 @@ namespace KarakibLab
                 String[] Splitted = ToBeSplited.Split(new Char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 handle.AddRange(Splitted);
                 Result.Add(handle);
-            }  
+            }
+            if (Data[CommandLocation[CommandLocation.Count - 1]] == 'Z')
+                Result.Add(new List<string>() {"Z"});
+            else
+            {
+                List<String> handle = new List<string>();
+                handle.Add(Data[CommandLocation[CommandLocation.Count - 1]].ToString());
+                String ToBeSplitted = Data.Substring(CommandLocation[CommandLocation.Count - 1]+1);
+                String[] Splitted = ToBeSplitted.Split(new Char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                handle.AddRange(Splitted);
+                Result.Add(handle);
+            } 
             return Result;
         }
+
+        private List<String> XamlSerializer(Uri Path)
+        {
+
+            return new List<string>();
+        }
+
     }
 }
