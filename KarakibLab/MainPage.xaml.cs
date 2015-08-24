@@ -80,5 +80,10 @@ namespace KarakibLab
         {
             this.Frame.Navigate(typeof(BitMap));
         }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Parser));
+        }
     }
 }

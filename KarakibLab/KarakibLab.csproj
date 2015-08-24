@@ -111,6 +111,9 @@
     <Compile Include="mybutton.xaml.cs">
       <DependentUpon>mybutton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Parser.xaml.cs">
+      <DependentUpon>Parser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SherineTest.xaml.cs">
       <DependentUpon>SherineTest.xaml</DependentUpon>
@@ -172,6 +175,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="mybutton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Parser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
