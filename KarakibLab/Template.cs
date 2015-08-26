@@ -2,21 +2,29 @@
 using System.Collections.Generic;
 using Windows.UI.Xaml.Media;
 using Windows.Foundation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI;
 namespace KarakibLab
 {
     using path = Windows.UI.Xaml.Shapes.Path;
-    class Template : path
+    class Template : Grid
     {
+        
         public Template(String Data)
         {
-            this.Data = this.Parse(Data);
+            path[] hello = this.KTSerializer(Data);
+            for (int i = 0; i < 2; i++)
+                this.Children.Add(hello[i]);
         }
-        private PathGeometry Parse(String Data)
+        enum Paths
+        {
+            Transparent, Opaque
+        }
+        private PathFigure Parse(String Data)
         {
             List<List<String>> Split = Spliter(Data);
-            PathGeometry Result = new PathGeometry();
             PathFigure figure = new PathFigure();
-            Result.Figures.Add(figure);
             foreach (List<String> item in Split)
             {
                 switch (item[0])
@@ -59,7 +67,7 @@ namespace KarakibLab
                         break;
                 }
             }
-            return Result;
+            return figure;
         }
         private List<List<String>> Spliter (String Data)
         {
@@ -79,7 +87,7 @@ namespace KarakibLab
             for (int i = 0; i < CommandLocation.Count-1; i++)
             {
                 List<String> handle = new List<string>();
-                handle.Add(Data[CommandLocation[i]].ToString());
+                handle.Add(Char.ToUpper(Data[CommandLocation[i]]).ToString());
                 String ToBeSplited = Data.Substring(CommandLocation[i]+1, CommandLocation[i + 1] - CommandLocation[i] - 1);
                 String[] Splitted = ToBeSplited.Split(new Char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 handle.AddRange(Splitted);
@@ -90,7 +98,7 @@ namespace KarakibLab
             else
             {
                 List<String> handle = new List<string>();
-                handle.Add(Data[CommandLocation[CommandLocation.Count - 1]].ToString());
+                handle.Add(Char.ToUpper(Data[CommandLocation[CommandLocation.Count - 1]]).ToString());
                 String ToBeSplitted = Data.Substring(CommandLocation[CommandLocation.Count - 1]+1);
                 String[] Splitted = ToBeSplitted.Split(new Char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 handle.AddRange(Splitted);
@@ -99,11 +107,26 @@ namespace KarakibLab
             return Result;
         }
 
-        private List<String> XamlSerializer(Uri Path)
+        private path[] KTSerializer(String Data)
         {
-
-            return new List<string>();
-        }
+            path[] Result = new path[2] { new path(), new path() };
+            Result[(int)Paths.Transparent].Fill = new SolidColorBrush(Colors.Black);
+            Result[(int)Paths.Opaque].Fill = new SolidColorBrush(Colors.White);
+            String[] TO = Data.Split(new Char[] { '_' },StringSplitOptions.RemoveEmptyEntries);
+            for (int t = 0; t < 2; t++)
+            {
+                String[] Split = TO[t].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                PathGeometry geo = new PathGeometry();
+                geo.FillRule = FillRule.Nonzero;
+                for (int i = 1; i < Split.Length; i++)
+                {
+                    geo.Figures.Add(this.Parse(Split[i]));
+                }
+                Result[t].Data = geo;
+            }
+            return Result;
+         }
 
     }
 }
+
