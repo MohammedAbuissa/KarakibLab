@@ -26,7 +26,6 @@ namespace KarakibLab
             this.Sides = 1000;
             this.InitialAngle = 0;
             this.InternalAngle = Math.PI / 500;
-            this.Fill = new SolidColorBrush(Colors.Black);
             this.Construct();
         }
         

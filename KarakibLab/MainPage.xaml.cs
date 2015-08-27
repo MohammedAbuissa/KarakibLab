@@ -85,5 +85,10 @@ namespace KarakibLab
         {
             this.Frame.Navigate(typeof(Parser));
         }
+
+        private void button4_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(KarwataA7san));
+        }
     }
 }
