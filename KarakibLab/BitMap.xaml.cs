@@ -30,10 +30,12 @@ namespace KarakibLab
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
         /// This parameter is typically used to configure the page.</param>
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected  override void OnNavigatedTo(NavigationEventArgs e)
         {
-            String Data = "T|M60,143.333 C125,-81.665 185,-6.66667 325,150.833 C465,308.333 320,415.832 342.5,435.832 C365,455.832 127.5,598.331 82.5,403.332 C37.5,208.333 -4.9999,368.331 60,143.333 z_O|M102.5,125.833 L240,138.333 C240,138.333 132.5,303.333 255,273.333 C377.5,243.333 325,455.833 220,393.333 C115,330.833 102.5,125.833 102.5,125.833 z|M55,258.333 C77.5,233.333 230,153.333 130,300.833 C30,448.333 300,280.833 237.5,435.834 C175,590.835 62.5,283.333 50,290.833 C37.5,298.333 55,258.333 55,258.333 z";
-            KarakibLab.Template t = new KarakibLab.Template(Data);
+            //define template
+            String Data1 = "T|M60,143.333 C125,-81.665 185,-6.66667 325,150.833 C465,308.333 320,415.832 342.5,435.832 C365,455.832 127.5,598.331 82.5,403.332 C37.5,208.333 -4.9999,368.331 60,143.333 z_O|M102.5,125.833 L240,138.333 C240,138.333 132.5,303.333 255,273.333 C377.5,243.333 325,455.833 220,393.333 C115,330.833 102.5,125.833 102.5,125.833 z|M55,258.333 C77.5,233.333 230,153.333 130,300.833 C30,448.333 300,280.833 237.5,435.834 C175,590.835 62.5,283.333 50,290.833 C37.5,298.333 55,258.333 55,258.333 z";
+            String Cats = "T|M211.111,133.889 C211.111,133.889 203.889,162.778 215.556,165 L236.667,173.333 L270,167.778 L286.667,151.667 L293.889,147.222 L304.444,176.111 C304.444,176.111 343.333,200.556 286.111,232.778 C286.111,232.778 268.889,269.444 356.666,351.667 C356.666,351.667 389.443,409.444 344.999,447.222 C344.999,447.222 336.666,453.333 356.666,461.111 C356.666,461.111 438.332,499.444 366.666,511.111 C366.666,511.111 298.333,535.555 225.555,511.111 C225.555,511.111 213.889,497.778 181.111,513.889 C181.111,513.889 86.6672,537.778 12.2232,504.444 C12.2232,504.444 -14.4431,493.889 25.0011,470 L63.3342,450.555 C63.3342,450.555 10.5568,420 39.4455,350 C39.4455,350 47.7788,330.555 59.4454,330 C59.4454,330 111.667,287.222 111.112,222.222 C111.112,222.222 114.445,209.444 96.6674,203.889 C96.6674,203.889 66.112,183.889 78.3341,160 L85.0008,115.556 L121.667,145 C121.667,145 150.556,141.111 167.778,150 L198.333,140.556 Z_O|M205.833,405.833 C205.833,405.833 213.333,461.667 276.667,460 C276.667,460 295.833,458.333 332.083,475 C332.083,475 369.167,495.417 334.167,500 C334.167,500 291.25,511.667 245,497.5 C245,497.5 233.75,496.25 245,491.25 L248.75,487.917 L245.833,482.917 C245.833,482.917 234.583,480 219.583,487.5 L208.333,491.25 L176.25,480.417 L166.667,484.583 L174.167,495 C174.167,495 98.8829,514.747 59.5013,497.829 C59.2494,497.721 58.9989,497.611 58.75,497.5 C58.75,497.5 45.4167,490.416 62.5,482.5 C62.5,482.5 94.167,463.333 117.5,458.75 C117.5,458.75 188.334,460.833 203.334,413.75 z|M196.667,201.667 C196.667,194.583 197.5,232.083 241.25,236.667 C241.25,236.667 294.583,293.75 220,346.667 L209.167,359.583 C209.167,359.583 206.25,345.833 198.333,340.833 C198.333,340.833 130,298.333 145.833,230.417 C145.833,230.417 147.5,217.083 161.25,217.083 C161.25,217.083 196.667,208.751 196.667,201.667 z";
+            KarakibLab.Template t = new KarakibLab.Template(Cats);
             Debug.WriteLine((t.Children[0] as path).Data.Bounds.Height +" "+ (t.Children[0] as path).Data.Bounds.Width);
             CompositeTransform c = new CompositeTransform();
             c.ScaleX = 0.75;
@@ -43,47 +45,8 @@ namespace KarakibLab
                 (t.Children[i] as path).RenderTransform = c;
             }
             Debug.WriteLine((t.Children[0] as path).Data.Bounds.Height + " " + (t.Children[0] as path).Data.Bounds.Width);
-            G.Children.Add(t);
-            RenderTargetBitmap render = new RenderTargetBitmap();
-            await render.RenderAsync(t);
-            var result = await render.GetPixelsAsync();
-            const int ScaleFactor = 2;
-            WriteableBitmap source = new WriteableBitmap(ScaleFactor * render.PixelWidth, ScaleFactor * render.PixelHeight);
-            using (Stream stream = source.PixelBuffer.AsStream())
-            {
-                Byte[] res = new Byte[source.PixelHeight * source.PixelWidth * 4];
-                for (int i = 0; i < res.Length; i++)
-                {
-                    res[i] = 0xff;
-                }
-                //عيب يا ابو عيسي :P
-                Byte[] kareem = result.ToArray();
-                int Hoffset = 40/*(int)((G.ActualWidth - render.PixelWidth)/2)*/;
-                int Voffset = 75/*(int)((G.ActualHeight - render.PixelHeight)/2)*/;
-                for (int i = 0,j=0; i+4 < source.PixelWidth*render.PixelHeight*4+Voffset * source.PixelWidth * 4; i =((j/(render.PixelWidth*4))+Voffset)*source.PixelWidth*4+i%(render.PixelWidth*4))
-                {
-                    if (kareem[j + 1] == 0 && kareem[j] == 0 && kareem[j + 2] == 0 && kareem[j + 3] == 255)
-                    {
-                        for (int l = 0; l < 3; l++)
-                        {
-                            res[i++ +Hoffset*4] = kareem[j++];
-                        }
-                        res[i++ + Hoffset*4] = 0;
-                        j++;
-                    }
-                        
-                    else
-                        for (int l = 0; l < 4; l++)
-                        {
-                            res[i++ + Hoffset * 4] = 0xff;
-                            j++;
-                        }
-                }
-                await stream.WriteAsync(res, 0, res.Length);
-            }
-            G.Children.Remove(t);
-            I.Source = source;
-
+            Template2BitMap.templateCreator(t, I, G, 0, 0, 2);
+            
         }
     }
 }

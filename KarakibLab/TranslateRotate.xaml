@@ -5,6 +5,7 @@
     xmlns:local="using:KarakibLab"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:c4fToolkit="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -16,6 +17,9 @@
         <Button x:Name="button" Content="Square" HorizontalAlignment="Left" Margin="10,582,0,0" VerticalAlignment="Top" Click="button_Click_4"/>
         <Button x:Name="button_Copy" Content="Triangle" HorizontalAlignment="Left" Margin="164,582,0,0" VerticalAlignment="Top" Click="button_Copy_Click"/>
         <Button x:Name="button_Copy1" Content="Circle" HorizontalAlignment="Left" Margin="291,582,0,0" VerticalAlignment="Top" Click="button_Copy1_Click"/>
-        <Grid x:Name="g" Margin="0,84,0,74" PointerMoved="g_PointerMoved" PointerPressed="g_PointerPressed" Background="White"/>
+        <Grid x:Name="g" Margin="0,84,0,74" PointerMoved="g_PointerMoved" PointerPressed="g_PointerPressed" Background="#00A200FF">
+            <Image x:Name="I" Stretch="None" Canvas.ZIndex="1"/>
+            <Grid x:Name="u" Margin="280,0,3,362" Canvas.ZIndex="1"/>
+        </Grid>
     </Grid>
 </Page>

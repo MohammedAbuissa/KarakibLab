@@ -8,10 +8,14 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using Windows.Foundation;
+using System.Diagnostics;
 namespace KarakibLab
 {
     abstract class Sticker : Path
     {
+        public Sticker Real { get; set; }
+        public Boolean isShadow { get; protected set; }
+        public Sticker Shadow { get; protected set; }
         protected List<LineSegment> Segments = new List<LineSegment>();
         public Point Sorigin { get; set; }
         protected Point Location;
@@ -28,25 +32,28 @@ namespace KarakibLab
             this.Radius = Radius;
             this.Tapped += Sticker_Tapped;
             this.Holding += Sticker_Holding;
+            
         }
 
         private void Sticker_Holding(object sender, Windows.UI.Xaml.Input.HoldingRoutedEventArgs e)
         {
-            if(!isActive)
+            Debug.WriteLine(isShadow+"Hello");
+            if((!Real.isActive) && isShadow)
             {
-                Global.Active.AddLast(sender as Sticker);
-                this.Opacity = 0.5;
-                this.isActive = true;
+                Global.Active.AddLast((sender as Sticker).Real);
+                this.Real.Opacity = 0.5;
+                this.Real.isActive = true;
             }
         }
 
         private void Sticker_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            if (isActive)
+            Debug.WriteLine(isShadow + "bye");
+            if (Real.isActive && isShadow)
             {
-                Global.Active.Remove(sender as Sticker);
-                this.Opacity = 1;
-                this.isActive = false;
+                Global.Active.Remove((sender as Sticker).Real);
+                this.Real.Opacity = 1;
+                this.Real.isActive = false;
             }
                 
         }
@@ -72,16 +79,22 @@ namespace KarakibLab
             this.Location.X += DeltaLocation.X;
             this.Location.Y += DeltaLocation.Y;
             this.Construct();
+            if(!isShadow)
+                this.Shadow.Translate(DeltaLocation);
         }
         public virtual void Rotate(Double DeltaAngle)
         {
             this.InitialAngle += DeltaAngle;
-            this.Construct(); 
+            this.Construct();
+            if(!isShadow)
+            this.Shadow.Rotate(DeltaAngle);
         }
         public void Scale (Double DeltaRadius)
         {
             this.Radius += DeltaRadius;
             this.Construct();
+            if(!isShadow)
+            this.Shadow.Scale(DeltaRadius);
         }
     }
 }

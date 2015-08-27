@@ -11,7 +11,7 @@ namespace KarakibLab
     class Template : Grid
     {
         
-        public Template(String Data)
+        public Template(String Data):base()
         {
             path[] hello = this.KTSerializer(Data);
             for (int i = 0; i < 2; i++)
