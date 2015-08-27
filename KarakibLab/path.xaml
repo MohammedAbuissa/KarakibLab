@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="KarakibLab.path"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KarakibLab"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#FFB1F9D8">
+        <Path Data="M55,284.583  C150.001,310 50,213.333 107.5,230.833 C165,248.333 98.75,18.3312 181.25,269.583 C263.75,520.835 248.75,354.584 287.5,303.334 C326.25,252.083 495,533.336 322.5,540.836 C150,548.336 77.5002,613.337 67.5002,488.336 C67.5002,488.336 -29.1663,457.502 42.5003,403.335 C114.167,349.168 -40.0005,259.166 55,284.583 z" Fill="#FFF4F4F5" Margin="15.548,150.841,0.768,75.122" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
+        
+
+    </Grid>
+</Page>
