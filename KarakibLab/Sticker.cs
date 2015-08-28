@@ -14,6 +14,7 @@ namespace KarakibLab
     abstract class Sticker : Path
     {
         public Sticker Real { get; set; }
+
         public Boolean isShadow { get; protected set; }
         public Sticker Shadow { get; protected set; }
         protected List<LineSegment> Segments = new List<LineSegment>();
