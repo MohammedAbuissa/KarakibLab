@@ -95,5 +95,10 @@ namespace KarakibLab
         {
             this.Frame.Navigate(typeof(UiTest));
         }
+
+        private void button5_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Gesture));
+        }
     }
 }

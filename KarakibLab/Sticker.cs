@@ -92,7 +92,7 @@ namespace KarakibLab
         }
         public void Scale (Double DeltaRadius)
         {
-            this.Radius += DeltaRadius;
+            this.Radius *= DeltaRadius;
             this.Construct();
             if(!isShadow)
             this.Shadow.Scale(DeltaRadius);

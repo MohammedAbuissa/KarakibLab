@@ -100,6 +100,9 @@
     <Compile Include="Drawing.xaml.cs">
       <DependentUpon>Drawing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gesture.xaml.cs">
+      <DependentUpon>Gesture.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Karwata.xaml.cs">
       <DependentUpon>Karwata.xaml</DependentUpon>
@@ -166,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Drawing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gesture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
