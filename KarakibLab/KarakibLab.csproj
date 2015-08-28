@@ -128,6 +128,9 @@
       <DependentUpon>TranslateRotate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Triangle.cs" />
+    <Compile Include="UiTest.xaml.cs">
+      <DependentUpon>UiTest.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -191,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TranslateRotate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

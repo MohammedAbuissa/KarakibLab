@@ -17,5 +17,6 @@
         <Button x:Name="button2" Content="BitMap" HorizontalAlignment="Left" Margin="48,186,0,0" VerticalAlignment="Top" Click="button2_Click"/>
         <Button x:Name="button3" Content="Parser" HorizontalAlignment="Left" Margin="283,356,0,0" VerticalAlignment="Top" Click="button3_Click"/>
         <Button x:Name="button4" Content="Karakib 1.0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Click="button4_Click"/>
+        <Button Content="UI Test" HorizontalAlignment="Left" Margin="227,457,0,0" VerticalAlignment="Top" Click="Button_Click_4"/>
     </Grid>
 </Page>
