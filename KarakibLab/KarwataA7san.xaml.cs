@@ -65,8 +65,15 @@ namespace KarakibLab
             {
                 (t.Children[i] as path).RenderTransform = c;
             }
+            Grid R = new Grid();
+            l.Children.Add(R);
+            Grid.SetColumn(R, 0);
+            Grid.SetColumnSpan(R, 1);
+            Grid.SetRow(R, 0);
+            Grid.SetRowSpan(R, 3);
             Debug.WriteLine((t.Children[0] as path).Data.Bounds.Height + " " + (t.Children[0] as path).Data.Bounds.Width);
-            Template2BitMap.templateCreator(t, I, l, 0, 50, 2);
+            Template2BitMap.templateCreator(t, I, R, 0, 50, 2);
+            //l.Children.Remove(R);
         }
         //rotate
         //right
@@ -135,6 +142,17 @@ namespace KarakibLab
             x.isActive = true;
             g.Children.Add(x);
             g.Children.Add(x.Shadow);
+        }
+
+        private void g_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            foreach (var k in Global.Active)
+            {
+                k.Rotate(-e.Delta.Rotation / 180.0 * Math.PI);
+                k.Translate(e.Delta.Translation);
+                if (e.Delta.Scale > 0)
+                    k.Scale(e.Delta.Scale);
+            }
         }
     }
 }

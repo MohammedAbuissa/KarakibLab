@@ -26,7 +26,7 @@ namespace KarakibLab
     /// </summary>
     public sealed partial class TranslateRotate : Page
     {
-        Color fill = new Color();
+        Color fill = Colors.Red;
         public TranslateRotate()
         {
             this.InitializeComponent();
@@ -131,6 +131,18 @@ namespace KarakibLab
                 g.Children.Remove(s);
                 g.Children.Remove(s.Shadow);
             }
+        }
+
+        private void g_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            foreach (var k in Global.Active)
+            {
+                k.Rotate(-e.Delta.Rotation / 180.0 * Math.PI);
+                k.Translate(e.Delta.Translation);
+                if (e.Delta.Scale > 0)
+                    k.Scale(e.Delta.Scale);
+            }
+            
         }
     }
 }

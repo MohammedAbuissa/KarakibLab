@@ -23,9 +23,9 @@ namespace KarakibLab
                 this.Shadow.Real = this;
             }
             this.isShadow = isShadow;
-            this.Sides = 1000;
+            this.Sides = 250;
             this.InitialAngle = 0;
-            this.InternalAngle = Math.PI / 500;
+            this.InternalAngle = Math.PI / 125;
             this.Construct();
         }
         
