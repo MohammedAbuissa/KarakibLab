@@ -15,16 +15,12 @@
             <RowDefinition Height="507*"/>
             <RowDefinition Height="63*"/>
         </Grid.RowDefinitions>
-        <Button Content="left" HorizontalAlignment="Left" Margin="60,-11,0,0" VerticalAlignment="Top" Click="Button_Click_1" MinWidth="50" MinHeight="50" Width="50" Height="50"/>
-        <Button Content="right" HorizontalAlignment="Left" Margin="60,25,0,-5" VerticalAlignment="Top" Click="Button_Click" MinWidth="50" MinHeight="50" Height="35" Width="74"/>
-        <Button Content="up" HorizontalAlignment="Left" Margin="3,25,0,-5" VerticalAlignment="Top" Click="Button_Click_2" Height="44" Width="49" MinWidth="50" MinHeight="50"/>
-        <Button Content="Down" HorizontalAlignment="Left" Margin="2,-9,0,0" VerticalAlignment="Top" Click="Button_Click_3" MinWidth="50" MinHeight="50" Height="25" Width="48"/>
         <Button x:Name="button" Content="Square" HorizontalAlignment="Left" Margin="10,4.868,0,0" VerticalAlignment="Top" Click="button_Click_4" Grid.Row="2"/>
         <Button x:Name="button_Copy" Content="Triangle" HorizontalAlignment="Left" Margin="164,4.868,0,0" VerticalAlignment="Top" Click="button_Copy_Click" Grid.Row="2"/>
         <Button x:Name="button_Copy1" Content="Circle" HorizontalAlignment="Left" Margin="291,4.868,0,0" VerticalAlignment="Top" Click="button_Copy1_Click" Grid.Row="2"/>
         <Grid x:Name="g" Margin="0,14,0,11.132" Background="#00A200FF" Grid.Row="1" ManipulationMode="All" ManipulationDelta="g_ManipulationDelta"/>
         <Grid x:Name="u" Margin="280,0,3,10" Canvas.ZIndex="1"/>
-        <Button x:Name="button1" Content="Delete" HorizontalAlignment="Left" Margin="139,1,0,0" VerticalAlignment="Top" Click="button1_Click" Height="58" Width="109"/>
+        <Button x:Name="button1" Content="Delete" HorizontalAlignment="Left" Margin="139,1,0,0" VerticalAlignment="Top" Click="button1_Click" Height="44" Width="92" MinWidth="0" MinHeight="0"/>
 
     </Grid>
 </Page>

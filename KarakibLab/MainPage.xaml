@@ -19,5 +19,6 @@
         <Button x:Name="button4" Content="Karakib 1.0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Click="button4_Click"/>
         <Button Content="UI Test" HorizontalAlignment="Left" Margin="227,457,0,0" VerticalAlignment="Top" Click="Button_Click_4"/>
         <Button x:Name="button5" Content="Gestures" HorizontalAlignment="Left" Margin="110,104,0,0" VerticalAlignment="Top" Click="button5_Click"/>
+        <Button x:Name="button6" Content="LanceLot" HorizontalAlignment="Left" Margin="262,62,0,0" VerticalAlignment="Top" Click="button6_Click"/>
     </Grid>
 </Page>

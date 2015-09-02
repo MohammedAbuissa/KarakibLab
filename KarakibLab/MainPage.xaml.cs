@@ -100,5 +100,10 @@ namespace KarakibLab
         {
             this.Frame.Navigate(typeof(Gesture));
         }
+
+        private void button6_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Lancelot));
+        }
     }
 }
