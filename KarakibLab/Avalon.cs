@@ -32,11 +32,10 @@
             }
         }
         Activation Attach, Detach;
-        public Avalon(PathSegmentCollection Segments, Activation Attach, Activation Detach)
+        public Avalon(AData Segments, Activation Attach, Activation Detach,Boolean Real = false)
         {
             Data = new PathGeometry();
-            (Data as PathGeometry).Figures.Add(new PathFigure());
-            (Data as PathGeometry).Figures[0].Segments = Segments;
+            (Data as PathGeometry).Figures.Add(new PathFigure { StartPoint = Segments.StartPoint, Segments = Segments.Segments});
             ManipulationMode = Windows.UI.Xaml.Input.ManipulationModes.All;
             RenderTransform = new CompositeTransform();
             RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);
@@ -45,7 +44,21 @@
             Tapped += Avalon_Tapped;
             Holding += Avalon_Holding;
             Loaded += Avalon_Loaded;
+            ManipulationDelta += Avalon_ManipulationDelta;
             Avalon_Holding(null, null);
+            if (!Real)
+            {
+                this.Real = new Avalon(Segments, Attach, Detach);
+                this.Real.RenderTransform = RenderTransform;
+                this.Real.RenderTransformOrigin = RenderTransformOrigin;
+                this.Real.Data = new PathGeometry();
+
+            }
+        }
+
+        void Avalon_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            Manipulation(e);
         }
 
         private void Avalon_Loaded(object sender, RoutedEventArgs e)

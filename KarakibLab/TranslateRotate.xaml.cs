@@ -135,14 +135,17 @@ namespace KarakibLab
 
         private void g_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            foreach (var k in Global.Active)
+            if (!e.IsInertial)
             {
-                k.Rotate(-e.Delta.Rotation / 180.0 * Math.PI);
-                k.Translate(e.Delta.Translation);
-                if (e.Delta.Scale > 0)
-                    k.Scale(e.Delta.Scale);
-            }
-            
+                foreach (var k in Global.Active)
+                {
+                    k.Rotate(-e.Delta.Rotation / 180.0 * Math.PI);
+                    k.Translate(e.Delta.Translation);
+                    if (e.Delta.Scale > 0)
+                        k.Scale(e.Delta.Scale);
+                }
+   
+            }            
         }
     }
 }

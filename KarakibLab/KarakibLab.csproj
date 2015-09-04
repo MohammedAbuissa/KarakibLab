@@ -84,6 +84,8 @@
     <None Include="shape.kt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AData.cs" />
+    <Compile Include="AFactory.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -153,6 +155,11 @@
     <Content Include="Assets\StoreLogo.scale-240.png" />
     <Content Include="Assets\transparent_cats.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
+    <Content Include="Assets\rec.png" />
+    <Content Include="Assets\tri.png" />
+    <Content Include="Assets\cir.png" />
+    <Content Include="Assets\shap.png" />
+    <Content Include="Assets\text.png" />
     <Content Include="ReadMe.Coding4Fun.Toolkit.txt" />
   </ItemGroup>
   <ItemGroup>

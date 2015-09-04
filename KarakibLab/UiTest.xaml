@@ -8,17 +8,41 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="#FFE3E3E3">
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,672">
-            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" Background="#FFCDCDCD">
-                <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RequestedTheme="Light" Background="{x:Null}" Width="70" MinWidth="1" MinHeight="1"/>
-                <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RequestedTheme="Light" Width="70" MinWidth="0" MinHeight="0"/>
-                <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RequestedTheme="Light" Width="70" MinWidth="0" MinHeight="0"/>
-                <Grid Margin="10,0" Width="1" Opacity="0.8" Background="#FF333333"/>
-                <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RequestedTheme="Light" MinWidth="0" MinHeight="0" Width="70"/>
-                <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RequestedTheme="Light" MinWidth="0" MinHeight="0" Width="70"/>
-            </StackPanel>
-        </Border>
+    <Grid Background="#FFFCFCFC">
+        <Grid Height="72.5" VerticalAlignment="Top" Background="#FFE5E5E4">
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition/>
+        		<ColumnDefinition/>
+        		<ColumnDefinition/>
+        		<ColumnDefinition/>
+        		<ColumnDefinition/>
+        	</Grid.ColumnDefinitions>
+        	<Grid x:Name="rec" Margin="23.5,21.5">
+        		<Grid.Background>
+        			<ImageBrush Stretch="Fill" ImageSource="Assets/rec.png"/>
+        		</Grid.Background>
+        	</Grid>
+        	<Grid x:Name="tri" Margin="23.5,21.5" Grid.Column="1">
+        		<Grid.Background>
+        			<ImageBrush Stretch="Fill" ImageSource="Assets/tri.png"/>
+        		</Grid.Background>
+        	</Grid>
+        	<Grid x:Name="cir" Margin="23.5,21.5" Grid.Column="2">
+        		<Grid.Background>
+        			<ImageBrush Stretch="Fill" ImageSource="Assets/cir.png"/>
+        		</Grid.Background>
+        	</Grid>
+        	<Grid x:Name="shape" Margin="23.5,21.5" Grid.Column="3">
+        		<Grid.Background>
+        			<ImageBrush Stretch="Fill" ImageSource="Assets/shap.png"/>
+        		</Grid.Background>
+        	</Grid>
+        	<Grid x:Name="text" Margin="23.5,21.5" Grid.Column="4">
+        		<Grid.Background>
+        			<ImageBrush Stretch="Fill" ImageSource="Assets/text.png"/>
+        		</Grid.Background>
+        	</Grid>
+        </Grid>
     </Grid>
 
 </Page>
