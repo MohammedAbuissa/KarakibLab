@@ -12,12 +12,13 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Xaml;
+using Windows.UI.Xaml.Shapes;
 using Windows.UI;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace KarakibLab
 {
+    using path = Windows.UI.Xaml.Shapes.Path;
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -27,7 +28,6 @@ namespace KarakibLab
         {
             this.InitializeComponent();
         }
-
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -36,7 +36,6 @@ namespace KarakibLab
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
-
         private void slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             if (Area != null)
