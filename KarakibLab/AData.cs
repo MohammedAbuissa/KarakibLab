@@ -8,9 +8,9 @@ namespace KarakibLab
 {
     using Windows.Foundation;
     using Windows.UI.Xaml.Media;
-    class AData
+    public class AData
     {
         public Point StartPoint { get; set; }
-        public PathSegmentCollection Segments { get; set; }
+        public List<PathSegment> Segments { get; set; }
     }
 }
