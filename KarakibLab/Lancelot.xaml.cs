@@ -30,44 +30,18 @@ namespace KarakibLab
         public Lancelot()
         {
             this.InitializeComponent();
-            List<AData> Segments = new List<AData>();
+            List<AvalonDataFactory> Pizza = new List<AvalonDataFactory>();
             //square
-            path p1 = new path();
-            p1.Data = new PathGeometry();
-            PathFigure Square = new PathFigure();
-            (p1.Data as PathGeometry).Figures.Add(Square);
-            path p2 = new path();
-            p2.Data = new PathGeometry();
-            (p2.Data as PathGeometry).Figures.Add(Square);
-            Square.StartPoint = new Point(0, 0);
-            //Square.Segments = new List<PathSegment>();
-            Square.Segments.Add(new LineSegment { Point = new Point(100, 0) });
-            Square.Segments.Add(new LineSegment { Point = new Point(100, 100) });
-            Square.Segments.Add(new LineSegment { Point = new Point(0, 100) });
-            Square.Segments.Add(new LineSegment { Point = new Point(0, 0) });
-            Area.Children.Add(p1);
-            Area.Children.Add(p2);
-            p1.Fill = new SolidColorBrush(Colors.Aqua);
-            p2.Fill = p1.Fill;
-            //Segments.Add(Square);
-            Debug.WriteLine("finished initializing square");
-            //Triangle
-            AData Triangle = new AData();
-            Triangle.StartPoint = new Point(50, 0);
-            Triangle.Segments = new List<PathSegment>();
-            Triangle.Segments.Add(new LineSegment { Point = new Point(100, 86.6) });
-            Triangle.Segments.Add(new LineSegment { Point = new Point(0, 86.6) });
-            Triangle.Segments.Add(new LineSegment { Point = new Point(50, 0) });
-            Segments.Add(Triangle);
-            //Circle
-            AData Circle = new AData();
-            Circle.StartPoint = new Point(50, 0);
-            Circle.Segments = new List<PathSegment>();
-            Circle.Segments.Add(new ArcSegment { Point = new Point(50, 100), Size = new Size(50, 50) });
-            Circle.Segments.Add(new ArcSegment { Point = new Point(50, 0), Size = new Size(50, 50), RotationAngle = 180 });
-            Segments.Add(Circle);
-            GraphicsFactory = new AFactory(Segments, new Activation(Attach), new Activation(Detach), new Point(200, 200));
-            GraphicsFactory.Fill = new SolidColorBrush();
+            AvalonDataFactory Square = new AvalonDataFactory(4, "Square");
+            List<Point> Umaro = new List<Point>();
+            Umaro.Add(new Point(0, 0));
+            Umaro.Add(new Point(100, 0));
+            Umaro.Add(new Point(100, 100));
+            Umaro.Add(new Point(0, 100));
+            Square.Info = Umaro;
+            Pizza.Add(Square);
+            GraphicsFactory = new AFactory(Pizza, new Activation(Attach), new Activation(Detach), new ManipulationDeltaEventHandler(Area_ManipulationDelta), new Point(0, 0));
+            GraphicsFactory.Fill = new SolidColorBrush(Colors.Black);
         }
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -80,9 +54,10 @@ namespace KarakibLab
         }
         private void slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            if(GraphicsFactory != null)
-                GraphicsFactory.Fill.Color = Number2Color((int)e.NewValue);
-            
+            if (GraphicsFactory != null)
+                GraphicsFactory.Fill = new SolidColorBrush(Number2Color((int)e.NewValue));
+            if (Activated != null)
+                Activated.fill = new SolidColorBrush(Number2Color((int)e.NewValue));
         }
         private void Attach(Avalon A)
         {
@@ -118,6 +93,23 @@ namespace KarakibLab
         private void C_Click(object sender, RoutedEventArgs e)
         {
             Area.Children.Add(GraphicsFactory.Produce(2));
+        }
+
+        private void Area_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            //if(Activated != null)
+            //    Activated.Manipulation(e);
+            if (!e.IsInertial && Activated!=null)
+            {
+                (Activated.RenderTransform as CompositeTransform).TranslateX += e.Delta.Translation.X;
+                (Activated.RenderTransform as CompositeTransform).TranslateY += e.Delta.Translation.Y;
+                (Activated.RenderTransform as CompositeTransform).Rotation += e.Delta.Rotation;
+                if (e.Delta.Scale > 0)
+                {
+                    (Activated.RenderTransform as CompositeTransform).ScaleX *= e.Delta.Scale;
+                    (Activated.RenderTransform as CompositeTransform).ScaleY *= e.Delta.Scale;
+                }
+            }
         }
     }
 }

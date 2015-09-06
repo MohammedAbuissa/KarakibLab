@@ -20,7 +20,7 @@
         <Button x:Name="S" Content="Square" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,1.333" Click="S_Click"/>
         <Button x:Name="T" Content="Triangle" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="114,0,0,1.333" Click="T_Click"/>
         <Button x:Name="C" Content="Circle" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="228,0,0,1.333" Click="C_Click"/>
-        <Canvas x:Name="Area" Margin="0,9.667,7.923,0" Grid.Row="1" Background="White"/>
+        <Grid x:Name="Area" Margin="0,9.667,7.923,0" Grid.Row="1" Background="White" ManipulationMode="All" ManipulationDelta="Area_ManipulationDelta"/>
         <Slider x:Name="slider" Margin="-3.667,0,0,0" RenderTransformOrigin="0.5,0.5" BorderBrush="#FF1BE207" Maximum="16777215" Orientation="Vertical" Grid.Column="1" Grid.RowSpan="2" Value="8388607" ValueChanged="slider_ValueChanged" LargeChange="1" Foreground="{x:Null}">
             <Slider.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

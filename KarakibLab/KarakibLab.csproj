@@ -84,11 +84,11 @@
     <None Include="shape.kt" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AData.cs" />
     <Compile Include="AFactory.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AvalonDataFactory.cs" />
     <Compile Include="Avalon.cs" />
     <Compile Include="BitMap.xaml.cs">
       <DependentUpon>BitMap.xaml</DependentUpon>
@@ -126,6 +126,7 @@
       <DependentUpon>Parser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GeometryFactory.cs" />
     <Compile Include="SherineTest.xaml.cs">
       <DependentUpon>SherineTest.xaml</DependentUpon>
     </Compile>

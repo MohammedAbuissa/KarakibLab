@@ -1,67 +1,59 @@
 ﻿namespace KarakibLab
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Windows.UI.Xaml;
-    using Windows.UI.Xaml.Shapes;
     using Windows.UI.Xaml.Controls;
-    using Windows.UI;
     using Windows.UI.Xaml.Media;
     using Windows.UI.Xaml.Input;
+    using Windows.UI;
     using System.Diagnostics;
     using path = Windows.UI.Xaml.Shapes.Path;
     public delegate void Activation(Avalon A);
     public sealed class Avalon: path
     {
-        private Boolean isActive = true;
+        private bool isActive = false;
         public Avalon Real { get; private set; }
-        public new SolidColorBrush Fill
+        public Brush fill
         {
             get
             {
-                return Fill;
+                return Real.Fill;
             }
             set
             {
+                
                 if (Real != null)
+                {
+                    Debug.WriteLine("I'm filling now");
                     Real.Fill = value;
+                }
+                    
             }
         }
         Activation Attach, Detach;
-        public Avalon(AData Segments, Activation Attach, Activation Detach,Boolean Real = false)
+        ManipulationDeltaEventHandler Router;
+        public Avalon(GeometryFactory Segments, Activation Attach, Activation Detach, ManipulationDeltaEventHandler Router , bool Real = false)
         {
             if (!Real)
             {
-                Data = new PathGeometry();
-                Debug.WriteLine(Segments.Segments.Count);
-                (Data as PathGeometry).Figures.Add(new PathFigure { StartPoint = Segments.StartPoint });
-                for (int i = 0; i < Segments.Segments.Count; i++)
-                {
-                    PathSegment p = Segments.Segments[i];
-                    (Data as PathGeometry).Figures[0].Segments.Add(p);
-                }
+                Data = Segments.Pattern();
                 ManipulationMode = Windows.UI.Xaml.Input.ManipulationModes.All;
                 RenderTransform = new CompositeTransform();
                 RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);
+                Fill = new SolidColorBrush(new Color { A = 0, R = 0, G = 0, B = 0 });
                 this.Attach = Attach;
                 this.Detach = Detach;
+                this.Router = Router;
                 Tapped += Avalon_Tapped;
                 Holding += Avalon_Holding;
                 Loaded += Avalon_Loaded;
                 ManipulationDelta += Avalon_ManipulationDelta;
-                this.Real = new Avalon(Segments, Attach, Detach, true);
+                this.Real = new Avalon(Segments, Attach, Detach, null, true);
                 this.Real.RenderTransform = RenderTransform;
                 this.Real.RenderTransformOrigin = RenderTransformOrigin;
-                this.Real.Data = new PathGeometry();
-                (this.Real.Data as PathGeometry).Figures.Add(new PathFigure { StartPoint = Segments.StartPoint });
-                for (int i = 0; i < Segments.Segments.Count; i++)
-                {
-                    PathSegment p = Segments.Segments[i];
-                    (this.Real.Data as PathGeometry).Figures[0].Segments.Add(p);
-                }
+                this.Real.Data = Segments.Pattern();
+                Canvas.SetZIndex(this, 2);
+                Canvas.SetZIndex(this.Real, 0);
                 Avalon_Holding(null, null);
             }
             
@@ -69,38 +61,48 @@
 
         void Avalon_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            Manipulation(e);
+            Router(sender, e);
         }
 
         private void Avalon_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Real != null)
-                (this.Parent as Panel).Children.Add(Real);
+            Debug.WriteLine("I have been loaded");
+            (this.Parent as Panel).Children.Add(Real);
         }
 
         private void Avalon_Holding(object sender, HoldingRoutedEventArgs e)
         {
-            Attach(this);
-            Real.Opacity = 0.5;
-            isActive = true;
+            if(!isActive)
+            {
+                Attach(this);
+                Real.Opacity = 0.5;
+                isActive = true;
+            }
         }
 
         private void Avalon_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Detach(this);
-            Real.Opacity = 1;
-            isActive = false;
+            if (isActive)
+            {
+                Detach(this);
+                Real.Opacity = 1;
+                isActive = false;
+            }
         }
         public void Manipulation(ManipulationDeltaRoutedEventArgs e)
         {
-            (RenderTransform as CompositeTransform).TranslateX += e.Delta.Translation.X;
-            (RenderTransform as CompositeTransform).TranslateY += e.Delta.Translation.Y;
-            (RenderTransform as CompositeTransform).Rotation += e.Delta.Rotation;
-            if (e.Delta.Scale >0)
+            if (!e.IsInertial)
             {
-                (RenderTransform as CompositeTransform).ScaleX *= e.Delta.Scale;
-                (RenderTransform as CompositeTransform).ScaleY *= e.Delta.Scale;
+                (RenderTransform as CompositeTransform).TranslateX += e.Delta.Translation.X;
+                (RenderTransform as CompositeTransform).TranslateY += e.Delta.Translation.Y;
+                (RenderTransform as CompositeTransform).Rotation += e.Delta.Rotation;
+                if (e.Delta.Scale > 0)
+                {
+                    (RenderTransform as CompositeTransform).ScaleX *= e.Delta.Scale;
+                    (RenderTransform as CompositeTransform).ScaleY *= e.Delta.Scale;
+                }
             }
+            
         }
     }
 }
