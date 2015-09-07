@@ -30,16 +30,29 @@ namespace KarakibLab
         public Lancelot()
         {
             this.InitializeComponent();
-            List<AvalonDataFactory> Pizza = new List<AvalonDataFactory>();
+            List<GeometryFactory> Pizza = new List<GeometryFactory>();
             //square
-            AvalonDataFactory Square = new AvalonDataFactory(4, "Square");
-            List<Point> Umaro = new List<Point>();
-            Umaro.Add(new Point(0, 0));
-            Umaro.Add(new Point(100, 0));
-            Umaro.Add(new Point(100, 100));
-            Umaro.Add(new Point(0, 100));
+            AvalonPolygonFactory Square = new AvalonPolygonFactory(4, "Square");
+            List<NotSealedPoint> Umaro = new List<NotSealedPoint>();
+            Umaro.Add(new NotSealedPoint(0, 0));
+            Umaro.Add(new NotSealedPoint(100, 0));
+            Umaro.Add(new NotSealedPoint(100, 100));
+            Umaro.Add(new NotSealedPoint(0, 100));
             Square.Info = Umaro;
             Pizza.Add(Square);
+            AvalonPolygonFactory Triangle = new AvalonPolygonFactory(3, "Triangle");
+            List<NotSealedPoint> Lolo = new List<NotSealedPoint>();
+            Lolo.Add(new NotSealedPoint(50, 0));
+            Lolo.Add(new NotSealedPoint(100, 86.6));
+            Lolo.Add(new NotSealedPoint(0, 86.6));
+            Triangle.Info = Lolo;
+            Pizza.Add(Triangle);
+            AvalonArcFactory Circle = new AvalonArcFactory(2, "Circle");
+            List<NotSealedPoint> lloyd = new List<NotSealedPoint>();
+            lloyd.Add(new ArcData(50, 0, 50, 50, 180));
+            lloyd.Add(new ArcData(50, 100, 50, 50, 0));
+            Circle.Info = lloyd;
+            Pizza.Add(Circle);
             GraphicsFactory = new AFactory(Pizza, new Activation(Attach), new Activation(Detach), new ManipulationDeltaEventHandler(Area_ManipulationDelta), new Point(0, 0));
             GraphicsFactory.Fill = new SolidColorBrush(Colors.Black);
         }
@@ -97,19 +110,8 @@ namespace KarakibLab
 
         private void Area_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            //if(Activated != null)
-            //    Activated.Manipulation(e);
-            if (!e.IsInertial && Activated!=null)
-            {
-                (Activated.RenderTransform as CompositeTransform).TranslateX += e.Delta.Translation.X;
-                (Activated.RenderTransform as CompositeTransform).TranslateY += e.Delta.Translation.Y;
-                (Activated.RenderTransform as CompositeTransform).Rotation += e.Delta.Rotation;
-                if (e.Delta.Scale > 0)
-                {
-                    (Activated.RenderTransform as CompositeTransform).ScaleX *= e.Delta.Scale;
-                    (Activated.RenderTransform as CompositeTransform).ScaleY *= e.Delta.Scale;
-                }
-            }
+            if (Activated != null)
+                Activated.Manipulation(e);
         }
     }
 }

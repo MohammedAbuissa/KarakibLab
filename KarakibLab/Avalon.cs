@@ -47,7 +47,7 @@
                 Tapped += Avalon_Tapped;
                 Holding += Avalon_Holding;
                 Loaded += Avalon_Loaded;
-                ManipulationDelta += Avalon_ManipulationDelta;
+                //ManipulationDelta += Avalon_ManipulationDelta;
                 this.Real = new Avalon(Segments, Attach, Detach, null, true);
                 this.Real.RenderTransform = RenderTransform;
                 this.Real.RenderTransformOrigin = RenderTransformOrigin;

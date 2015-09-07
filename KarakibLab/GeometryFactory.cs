@@ -6,7 +6,7 @@ namespace KarakibLab
     using Windows.Foundation;
     public interface GeometryFactory
     {
-        List<Point> Info { get; set; }
+        List<NotSealedPoint> Info { get; set; }
         PathGeometry Pattern();
     }
 }

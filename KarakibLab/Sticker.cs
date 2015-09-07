@@ -33,6 +33,7 @@ namespace KarakibLab
             this.Radius = Radius;
             this.Tapped += Sticker_Tapped;
             this.Holding += Sticker_Holding;
+            this.ManipulationMode = Windows.UI.Xaml.Input.ManipulationModes.All;
             
         }
 

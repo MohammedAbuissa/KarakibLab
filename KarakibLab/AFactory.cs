@@ -9,9 +9,9 @@ namespace KarakibLab
         Activation Attach, Detach;
         ManipulationDeltaEventHandler Router;
         public SolidColorBrush Fill { get; set; }
-        List<AvalonDataFactory> Data ;
+        List<GeometryFactory> Data ;
         Point DefaultLocation;
-        public AFactory(List<AvalonDataFactory> Data, Activation Attach, Activation Detach, ManipulationDeltaEventHandler Router , Point DefaultLocation)
+        public AFactory(List<GeometryFactory> Data, Activation Attach, Activation Detach, ManipulationDeltaEventHandler Router , Point DefaultLocation)
         {
             this.Attach = Attach;
             this.Detach = Detach;
